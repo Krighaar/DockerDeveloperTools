@@ -81,12 +81,12 @@ namespace Docker.Developer.Tools.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
-        internal static byte[] ContainerExited {
+        internal static DevExpress.Utils.Svg.SvgImage ContainerExited {
             get {
                 object obj = ResourceManager.GetObject("ContainerExited", resourceCulture);
-                return ((byte[])(obj));
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
         
@@ -111,12 +111,12 @@ namespace Docker.Developer.Tools.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
-        internal static byte[] ContainerRestarting {
+        internal static DevExpress.Utils.Svg.SvgImage ContainerRestarting {
             get {
                 object obj = ResourceManager.GetObject("ContainerRestarting", resourceCulture);
-                return ((byte[])(obj));
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
         

@@ -28,7 +28,7 @@ namespace Docker.Developer.Tools
     {
       var currentSkin = DevExpress.Skins.CommonSkins.GetSkin(DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveLookAndFeel);
       var SkinElementName = DevExpress.Skins.CommonColors.DisabledText;
-      Color DisabledColor = currentSkin.Colors[SkinElementName];
+      var DisabledColor = currentSkin.Colors[SkinElementName];
       return DisabledColor;
     }
   }
