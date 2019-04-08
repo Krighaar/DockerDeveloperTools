@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <!--Includes-->
+  <?include common.wxi ?>
+  
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="CMP_Application" Guid="*">
+        <File Id="File_Application" Source="$(var.ProjectTargetPath)" KeyPath="yes">
+          <Shortcut Id="SM_Shortcut"
+                    Directory="ProgramMenuFolder"
+                    Name="$(var.PRODUCT)"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Icon="App.exe"
+                    IconIndex="0"
+                    Advertise="yes" />
+          <Shortcut Id="DT_Shortcut"
+                    Directory="DesktopFolder"
+                    Name="$(var.PRODUCT)"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Icon="App.exe"
+                    IconIndex="0"
+                    Advertise="yes" />
+          <!--Run NGen on installed libraries to improve application performance.
+          Disable this to improve install performance.-->
+          <!--<netfx:NativeImage Id="NG_Application" Platform="all" Priority="0" AppBaseDirectory="INSTALLFOLDER" />-->
+        </File>
+      </Component>
+      <Component Id="CMP_Config" Guid="*">
+        <File Id="File_Config" Source="$(var.ProjectTargetPath).config" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  <Fragment>
+    <ComponentGroup Id="ManualFiles">
+      <ComponentRef Id="CMP_Application" />
+      <ComponentRef Id="CMP_Config" />
+    </ComponentGroup>
+	</Fragment>
+</Wix>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Directory Id="dirF745B7B2CB892799DAE17E014E210AF0" Name="Resources">
+                <Component Id="cmp46A0E1673457556C2011DD65DEFBCDD7" Guid="*">
+                    <File Id="fil14A4F412554BF6F454BCC3B98693703B" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerAttach.svg" />
+                </Component>
+                <Component Id="cmp45F46F7B82589F96E0DED70878A60DF1" Guid="*">
+                    <File Id="filA2B4579BF17438B39F4F970EC1BC3724" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerCreated.svg" />
+                </Component>
+                <Component Id="cmp2248CB43539CD9970881900D91021F13" Guid="*">
+                    <File Id="fil412B53690400785102F6B343DE873796" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerExited.svg" />
+                </Component>
+                <Component Id="cmp923981148676CDE92C15608D2302A937" Guid="*">
+                    <File Id="fil780C84977E2BBF1E945A3037763A6621" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerLogs.svg" />
+                </Component>
+                <Component Id="cmpB42E275C98FB17E5E99E8F56B335515F" Guid="*">
+                    <File Id="fil57E8B05B3EEE0E7FF993B2EEFA2F2E87" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerRemoving.svg" />
+                </Component>
+                <Component Id="cmp28BE7E274E44EEF7EBD6F3B02BD07D23" Guid="*">
+                    <File Id="fil187099D232748FCB1BAF295142C81382" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerRestarting.svg" />
+                </Component>
+                <Component Id="cmp0804D996127ABF5991CE6CFEE5484613" Guid="*">
+                    <File Id="fil13992E9CD473C1405EC131E7519ABA35" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerRunning.svg" />
+                </Component>
+                <Component Id="cmpFD969CCEC364EC8F977C2EB043641FD1" Guid="*">
+                    <File Id="filA634112EDB7A111DDD8098381963D7D3" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ImageRemove.svg" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Docker.Developer.Tools.Content">
+            <ComponentRef Id="cmp46A0E1673457556C2011DD65DEFBCDD7" />
+            <ComponentRef Id="cmp45F46F7B82589F96E0DED70878A60DF1" />
+            <ComponentRef Id="cmp2248CB43539CD9970881900D91021F13" />
+            <ComponentRef Id="cmp923981148676CDE92C15608D2302A937" />
+            <ComponentRef Id="cmpB42E275C98FB17E5E99E8F56B335515F" />
+            <ComponentRef Id="cmp28BE7E274E44EEF7EBD6F3B02BD07D23" />
+            <ComponentRef Id="cmp0804D996127ABF5991CE6CFEE5484613" />
+            <ComponentRef Id="cmpFD969CCEC364EC8F977C2EB043641FD1" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

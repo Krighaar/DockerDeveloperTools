@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="-2 -4 32 32" xmlns="http://www.w3.org/2000/svg">
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Box">
+      <polygon points="18,4 10,4 2,12 10,12  " fill="#FFB115" class="Yellow" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Box">
+      <rect x="2" y="14" width="20" height="14" rx="0" ry="0" fill="#FFB115" class="Yellow" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Box">
+      <polygon points="24,28 30,22 30,6.8 24,12.8  " fill="#FFB115" class="Yellow" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Box">
+      <polygon points="21,4 13,12 21.9,12 29.9,4  " fill="#FFB115" class="Yellow" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 12)">
+    <g id="Settings">
+      <path d="M16, 9L16, 7L13.5, 6.4C13.4, 6 13.2, 5.6 13, 5.2L14.5, 3.1L12.9, 1.5L10.8, 3C10.4, 2.8 10, 2.6 9.6, 2.5L9, 0L7, 0L6.4, 2.5C6, 2.6 5.6, 2.8 5.2, 3L3.2, 1.5L1.5, 3.2L3, 5.2C2.8, 5.6 2.6, 6 2.5, 6.4L0, 7L0, 9L2.5, 9.6C2.6, 10 2.8, 10.4 3, 10.8L1.5, 12.9L3.1, 14.5L5.2, 13C5.6, 13.2 6, 13.4 6.4, 13.5L7, 16L9, 16L9.6, 13.5C10, 13.4 10.4, 13.2 10.8, 13L12.9, 14.5L14.5, 12.9L13, 10.8C13.2, 10.4 13.4, 10 13.5, 9.6L16, 9z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 12)">
+    <g id="Settings">
+      <circle cx="8" cy="8" r="2" fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+</svg>

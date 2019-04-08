@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!--Includes-->
+  <?include common.wxi ?>
+
+  <!--Main product-->
+  <!--
+  WHEN RELEASING NEW VERSIONS, REMEMBER TO:
+  - Change Product ID (unless this is set to "*")
+  - Change Product Version
+  - Never change Product UpgradeCode
+
+  Language 1030: http://msdn.microsoft.com/en-us/library/ms912047(v=winembedded.10).aspx (Danish)
+  Codepage 1252: http://en.wikipedia.org/wiki/Windows-1252
+  -->
+  <Product Id="*"
+           Name="$(var.PRODUCT) $(var.VERSION)"
+           Language="1030"
+           Codepage="1252"
+           Version="$(var.VERSION)"
+           Manufacturer="$(var.MANUFACTURER)"
+           UpgradeCode="$(var.UPGRADECODE)">
+    <Package InstallerVersion="200"
+             Keywords="Installer, MSI, Package"
+             Manufacturer="$(var.MANUFACTURER)"
+             Compressed="yes"
+             InstallScope="perMachine"
+             SummaryCodepage="1252" />
+
+    <!--Upgrade info-->
+    <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A newer version of $(var.PRODUCT) is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <InstallExecuteSequence>
+      <!--Native image generation: Enable to generate native images for the application binaries to improve application performance.
+      Be aware that Ngen can take some time there by making the installer look like it is stuck.-->
+      <!--<Custom Action="Ngen" After="InstallFinalize">NOT Installed</Custom>-->
+
+      <!--Encrypt config file:
+      NOT REMOVE = do not perform when uninstalling, i.e. only perform during install/upgrade:
+      http://stackoverflow.com/questions/537584/how-to-execute-custom-action-only-in-install-not-uninstall-->
+      <!--<Custom Action="CustomActions.SetEncryptConfigPath" Before="InstallFinalize">NOT REMOVE</Custom>
+      <Custom Action="CustomActions.EncryptConfig" After="CustomActions.SetEncryptConfigPath">NOT REMOVE</Custom>-->
+    </InstallExecuteSequence>
+
+    <!--UI reference-->
+    <UIRef Id="WixUI_Minimal" />
+
+    <!-- Properties -->
+    <Property Id="ApplicationFolderName" Value="$(var.MANUFACTURER)\$(var.PRODUCT)" />
+    <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONFOLDER" />
+    <Property Id="ARPPRODUCTICON" Value="App.exe" />
+
+    <Icon Id="App.exe" SourceFile="$(var.ProjectTargetPath)" />
+    <!--License file-->
+    <WixVariable Id="WixUILicenseRtf" Value="..\LICENSE" />
+    <!-- Folder Structure in Directories.wxs-->
+    <PropertyRef Id="DirectoryStructure" />
+
+    <!-- Complete Feature in CompleteFeature.wxs-->
+    <FeatureGroupRef Id="CompleteFeatures" />
+  </Product>
+</Wix>

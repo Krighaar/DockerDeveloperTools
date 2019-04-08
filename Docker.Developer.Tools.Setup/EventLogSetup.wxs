@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!--Includes-->
+  <?include common.wxi ?>
+  
+	<Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <!-- Event Source creation for 32bit OS with .NET 4 Full-->
+      <Component Id="CreateEventSource32BitFullNet4" Guid="D5A2AD67-8EAA-4F04-A184-C8D7D97B4250" KeyPath="yes">
+        <Condition><![CDATA[NETFRAMEWORK40FULLINSTALLROOTDIR AND NOT VersionNT64]]></Condition>
+        <CreateFolder/>
+        <!--Create an Event Source-->
+        <Util:EventSource
+              xmlns:Util="http://schemas.microsoft.com/wix/UtilExtension"
+              Name="$(var.PRODUCT)"
+              Log="Application"
+              EventMessageFile="[NETFRAMEWORK40FULLINSTALLROOTDIR]EventLogMessages.dll"/>
+      </Component>
+      <!-- Event Source creation for 64bit OS with .NET 4 Full -->
+      <Component Id="CreateEventSource64BitFullNet4" Guid="CAFD19E3-7A4F-4653-8C04-A96372D594BF" KeyPath="yes">
+        <Condition><![CDATA[NETFRAMEWORK40FULLINSTALLROOTDIR64 AND VersionNT64]]></Condition>
+        <CreateFolder/>
+        <!--Create an Event Source-->
+        <Util:EventSource
+              xmlns:Util="http://schemas.microsoft.com/wix/UtilExtension"
+              Name="$(var.PRODUCT)"
+              Log="Application"
+              EventMessageFile="[NETFRAMEWORK40FULLINSTALLROOTDIR64]EventLogMessages.dll"/>
+      </Component>
+    </DirectoryRef>
+	</Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="EventLogSetup">
+      <ComponentRef Id="CreateEventSource32BitFullNet4" />
+      <ComponentRef Id="CreateEventSource64BitFullNet4" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

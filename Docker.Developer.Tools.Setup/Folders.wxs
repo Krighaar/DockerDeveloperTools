@@ -1,0 +1,30 @@
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <!--Includes-->
+  <?include common.wxi ?>
+  
+  <Fragment>
+    <Property Id="DirectoryStructure" Value="1" />
+    <!-- Installation Folder -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="ManufacturerFolder" Name="$(var.MANUFACTURER)">
+          <Directory Id="INSTALLFOLDER" Name="$(var.PRODUCT)" />
+        </Directory>
+      </Directory>
+      <!-- Start Menu Folder -->
+      <Directory Id="ProgramMenuFolder" />
+      <!--<Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="$(var.PRODUCT)">
+          <Component Id="ProgramMenuDir" Guid="a20dd638-85db-4771-9018-425315671dc6">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\$(var.MANUFACTURER)\$(var.PRODUCT)" Type="string" Value="" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>-->
+      <!-- Desktop Folder -->
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+  </Fragment>
+</Wix>
