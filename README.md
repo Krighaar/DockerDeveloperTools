@@ -4,7 +4,7 @@ This tool is primarily intended to be used when developing Docker images using D
 It tries to combine as many different work processes as possible into one tool.
 Some of the things that would normally require one or more commands in Powershell/Command prompt ca be done with a single click in the application.
 
-Download: [latest release](https://drive.google.com/file/d/1LzzoOMhvm9i9Sw7zi_ZO1VvbOoWjC5OQ/view?usp=sharing)
+[Downloads](https://drive.google.com/drive/folders/1RwvxWN8UHJgQEetQTajKH6uMor2scI7p?usp=sharing)
 
 ### Intro
 My background for starting this app is that at my workplace we recently started working with Docker.
