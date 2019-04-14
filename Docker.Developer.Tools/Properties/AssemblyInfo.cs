@@ -5,11 +5,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Docker Developer Tools")]
-[assembly: AssemblyDescription("Tools to assist when developing Docker images.")]
+[assembly: AssemblyDescription("Tools to assist when developing Docker images using Docker for Windows.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Chapter 5")]
 [assembly: AssemblyProduct("Docker.Developer.Tools")]
-[assembly: AssemblyCopyright("Copyright © Chapter 5 2019")]
+[assembly: AssemblyCopyright("Copyright © Krm1t 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

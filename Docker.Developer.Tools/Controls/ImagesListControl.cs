@@ -34,8 +34,7 @@ namespace Docker.Developer.Tools.Controls
 
     public void MergeStatusBar(RibbonStatusBar parent)
     {
-      //if (parent == null) throw new ArgumentNullException(nameof(parent));
-      //parent.MergeStatusBar(ribbonStatusBar);
+      // No status bar to merge.
     }
 
     private void timer_Tick(object sender, EventArgs e)

@@ -64,7 +64,6 @@
   <ItemGroup>
     <Content Include="Binaries.Filter.xslt" />
     <Content Include="Common.wxi" />
-    <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Docker.Developer.Tools\Docker.Developer.Tools.csproj">

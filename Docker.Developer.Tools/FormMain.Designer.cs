@@ -29,6 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.virtualServerModeSourceContainers = new DevExpress.Data.VirtualServerModeSource(this.components);
       this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
       this.ribbonPageContainers = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -176,6 +177,7 @@
       this.Controls.Add(this.tabControl);
       this.Controls.Add(this.ribbonStatusBar);
       this.Controls.Add(this.ribbonControl);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "MainForm";
       this.Text = "Docker developer tools";
       this.Load += new System.EventHandler(this.FormMain_Load);

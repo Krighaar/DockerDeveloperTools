@@ -2,7 +2,7 @@
 <Include>
   <?define VERSION=0.0.2?>
   <?define PRODUCT=Docker Developer Tools?>
-  <?define MANUFACTURER=Chapter 5?>
+  <?define MANUFACTURER=Krm1t?>
   <?define UPGRADECODE={021214CC-098F-4763-8740-A67F352957C5}?>
   
   <?define ProjectTargetPath=$(var.Docker.Developer.Tools.TargetPath)?>
