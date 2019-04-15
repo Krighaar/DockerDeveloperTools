@@ -1,19 +1,21 @@
-﻿using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraEditors;
-using Docker.DotNet;
-using Docker.DotNet.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
+using Docker.Developer.Tools.GridControlState;
+using Docker.DotNet;
+using Docker.DotNet.Models;
 
 namespace Docker.Developer.Tools.Controls
 {
   public partial class ContainerListControl : XtraUserControl, IControlSupportsRibbonMerge
   {
     private DockerClient _dockerClient;
+    private ViewStateToken _containerViewToken;
 
     public ContainerListControl()
     {
@@ -40,6 +42,7 @@ namespace Docker.Developer.Tools.Controls
 
     private void timer_Tick(object sender, EventArgs e)
     {
+      _containerViewToken = gridControlState.StoreViewState(gridViewContainerList);
       virtualServerModeSource.Refresh();
     }
 
@@ -50,16 +53,23 @@ namespace Docker.Developer.Tools.Controls
       var listContainerParameters = new ContainersListParameters() { All = true };
       e.RowsTask = _dockerClient.Containers.ListContainersAsync(listContainerParameters, e.CancellationToken).ContinueWith(result =>
       {
-        return new DevExpress.Data.VirtualServerModeRowsTaskResult(result.Result.OrderBy(l => l.ID).ToList(), false, null);
+        return new DevExpress.Data.VirtualServerModeRowsTaskResult(result.Result.ToList(), false, null);
       });
-
-      if (!timer.Enabled) timer.Start();
     }
 
     private void gridViewContainerList_AsyncCompleted(object sender, EventArgs e)
     {
+      // Store token in local variable before nulling the member.
+      // See gridViewContainerList_FocusedRowChanged for reason.
+      var token = _containerViewToken;
+      _containerViewToken = null;
+      token?.RestoreState();
+
       barButtonItemStopAllContainers.Enabled = gridViewContainerList.DataRowCount > 0;
       barButtonItemDeleteAllContainersMenu.Enabled = gridViewContainerList.DataRowCount > 0;
+      // Manual trigger UpdateDetails since FocusedRowChanged wont trigger in this case.
+      if (gridViewContainerList.FocusedRowHandle == 0) UpdateDetails();
+      if (!timer.Enabled) timer.Start(); // Start refresh timer if not already started.
     }
 
     private void gridViewContainerList_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -68,7 +78,12 @@ namespace Docker.Developer.Tools.Controls
       {
         if (e.Column == colName)
         {
-          e.Value = container.Names.FirstOrDefault();
+          var name = container.Names.FirstOrDefault();
+          e.Value = name.StartsWith("/") ? name.Substring(1) : name;
+        }
+        else if (e.Column == colContainerIdString)
+        {
+          e.Value = container.ID.Substring(0, 8);
         }
         else if (e.Column == colState)
         {
@@ -84,10 +99,20 @@ namespace Docker.Developer.Tools.Controls
 
     private void gridViewContainerList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
     {
+      // If state is stored then this FocusedRowChanged was triggered by the data source being updated.
+      // We ignore this as another FocusedRowChanged event will be triggered when state is restored.
+      if (_containerViewToken != null) return;
+      UpdateDetails();
+    }
+
+    private void UpdateDetails()
+    {
       var row = gridViewContainerList.GetFocusedRow() as ContainerListResponse;
       textContainerId.Text = row != null ? row.ID : string.Empty;
-      textContainerName.Text = row != null ? row.Names.FirstOrDefault() : string.Empty;
-      textImageId.Text = row != null ? row.ImageID : string.Empty;
+      var containerName = row != null ? row.Names.FirstOrDefault() : string.Empty;
+      textContainerName.Text = containerName.StartsWith("/") ? containerName.Substring(1) : containerName;
+      var imageId = row != null ? row.ImageID : string.Empty;
+      textImageId.Text = imageId.Contains(":") ? imageId.Substring(imageId.IndexOf(":") + 1) : imageId;
       textImageName.Text = row != null ? row.Image : string.Empty;
       textCreatedDate.Text = row != null ? row.Created.ToShortDateString() : string.Empty;
       textCommand.Text = row != null ? row.Command : string.Empty;
@@ -95,10 +120,18 @@ namespace Docker.Developer.Tools.Controls
       textSizeRW.Text = row != null ? HelperFunctions.GetSizeString(row.SizeRw) : string.Empty;
       textState.Text = row != null ? row.State : string.Empty;
       textStatus.Text = row != null ? row.Status : string.Empty;
-      gridVolumes.DataSource = row?.Mounts;
-      gridPorts.DataSource = row?.Ports;
-      gridNetworkSettings.DataSource = row?.NetworkSettings?.Networks;
-      gridLabels.DataSource = row?.Labels;
+      using (var token = gridControlState.StoreViewState(gridViewVolumes))
+        gridVolumes.DataSource = row?.Mounts.ToList();
+
+      using (var token = gridControlState.StoreViewState(gridViewPorts))
+        gridPorts.DataSource = row?.Ports;
+
+      using (var token = gridControlState.StoreViewState(gridViewNetworkSettings))
+        gridNetworkSettings.DataSource = row?.NetworkSettings?.Networks;
+
+      using (var token = gridControlState.StoreViewState(gridViewLabels))
+        gridLabels.DataSource = row?.Labels;
+
       UpdateButtons();
     }
 
@@ -109,12 +142,13 @@ namespace Docker.Developer.Tools.Controls
       barButtonItemDeleteContainerMenu.Enabled = row != null;
       barButtonItemAttachToContainer.Enabled = row != null && row.State == ContainerStatus.running.ToString();
       barButtonItemShowLogs.Enabled = row != null;
-      barButtonItemOpenMappedFolder.Enabled = row != null && row.Mounts.Any();
+      //barButtonItemOpenMappedFolder.Enabled = row != null && row.Mounts.Any();
       barButtonItemOpenUrlMenu.Enabled = row != null && row.Ports.Any();
     }
 
     private void gridViewContainerList_KeyDown(object sender, KeyEventArgs e)
     {
+      // Skip moving through cells when moving focus up and down with the keys.
       if (e.KeyCode == Keys.Down)
       {
         gridViewContainerList.MoveNext();
@@ -129,7 +163,7 @@ namespace Docker.Developer.Tools.Controls
 
     private void gridViewContainerList_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
     {
-      if (e.Column == colImage)
+      if (e.Column == colImage || e.Column == colContainerIdString)
       {
         e.Appearance.ForeColor = HelperFunctions.GetDisabledColor();
       }
@@ -143,11 +177,7 @@ namespace Docker.Developer.Tools.Controls
     {
       if (e.IsGetData && e.Row is MountPoint mountPoint)
       {
-        if (e.Column == colVolumesId)
-        {
-          e.Value = mountPoint.GetHashCode();
-        }
-        else if (e.Column == colVolumesMode)
+        if (e.Column == colVolumesMode)
         {
           e.Value = mountPoint.RW ? "Read/Write" : "Read-only";
         }

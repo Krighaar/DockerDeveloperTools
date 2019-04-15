@@ -104,6 +104,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GridControlState\Design\GridControlStateEditor.cs" />
+    <Compile Include="GridControlState\GridControlState.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GridControlState\ViewStateToken.cs" />
     <Compile Include="HelperFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

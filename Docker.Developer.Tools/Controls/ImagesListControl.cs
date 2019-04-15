@@ -1,18 +1,20 @@
-﻿using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraEditors;
-using Docker.DotNet;
-using Docker.DotNet.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
+using Docker.Developer.Tools.GridControlState;
+using Docker.DotNet;
+using Docker.DotNet.Models;
 
 namespace Docker.Developer.Tools.Controls
 {
   public partial class ImagesListControl : XtraUserControl, IControlSupportsRibbonMerge
   {
     private DockerClient _dockerClient;
+    private ViewStateToken _imageViewToken;
 
     public ImagesListControl()
     {
@@ -39,6 +41,7 @@ namespace Docker.Developer.Tools.Controls
 
     private void timer_Tick(object sender, EventArgs e)
     {
+      _imageViewToken = gridControlState.StoreViewState(gridViewImageList);
       virtualServerModeSource.Refresh();
     }
 
@@ -46,26 +49,37 @@ namespace Docker.Developer.Tools.Controls
 
     private void virtualServerModeSource_ConfigurationChanged(object sender, DevExpress.Data.VirtualServerModeRowsEventArgs e)
     {
-      e.RowsTask = _dockerClient.Images.ListImagesAsync(new ImagesListParameters() { All = true }, e.CancellationToken).ContinueWith(task =>
+      e.RowsTask = _dockerClient.Images.ListImagesAsync(new ImagesListParameters() { All = barButtonItemShowAllImages.Down }, e.CancellationToken).ContinueWith(task =>
       {
         // We add an order by here as the grid seems to have trouble sorting on its own.
-        return new DevExpress.Data.VirtualServerModeRowsTaskResult(task.Result.OrderBy(l => l.ID).ToList(), false, null);
-      });
+        var query = task.Result.AsEnumerable();
+        if (barButtonItemHideNoneImages.Down)
+          query = query.Where(l => l.RepoTags.FirstOrDefault() != null && l.RepoTags.First().ToLowerInvariant() != "<none>:<none>");
 
-      if (!timer.Enabled) timer.Start();
+        query = query.OrderBy(l => l.ID);
+        return new DevExpress.Data.VirtualServerModeRowsTaskResult(query.ToList(), false, null);
+      });
     }
 
     private void gridViewImageList_AsyncCompleted(object sender, EventArgs e)
     {
+      // Store token in local variable before nulling the member.
+      // See gridViewImageList_FocusedRowChanged for reason.
+      var token = _imageViewToken;
+      _imageViewToken = null;
+      token?.RestoreState();
+
       barButtonItemDeleteAllImages.Enabled = gridViewImageList.DataRowCount > 0;
+      if (gridViewImageList.FocusedRowHandle == 0) UpdateDetails();
+      if (!timer.Enabled) timer.Start();
     }
 
     private void gridViewImageList_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
     {
       if (e.IsGetData && e.Row is ImagesListResponse imagesListResponse)
       {
-        if (e.Column == colID)
-          e.Value = imagesListResponse.ID.Substring(imagesListResponse.ID.IndexOf(":") + 1, 12);
+        if (e.Column == colIDShort)
+          e.Value = imagesListResponse.ID.Substring(imagesListResponse.ID.IndexOf(":") + 1, 10);
         else if (e.Column == colRepositoryName)
           e.Value = imagesListResponse.RepoTags.FirstOrDefault();
       }
@@ -73,17 +87,33 @@ namespace Docker.Developer.Tools.Controls
 
     private void gridViewImageList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
     {
+      // If state is stored then this FocusedRowChanged was triggered by the data source being updated.
+      // We ignore this as another FocusedRowChanged event will be triggered when state is restored.
+      if (_imageViewToken != null) return;
+      UpdateDetails();
+    }
+
+    private void UpdateDetails()
+    {
       var imageResponse = gridViewImageList.GetFocusedRow() as ImagesListResponse;
-      textImageId.Text = imageResponse != null ? imageResponse.ID : string.Empty;
-      textParentId.Text = imageResponse != null ? imageResponse.ParentID : string.Empty;
+      var imageId = imageResponse != null ? imageResponse.ID : string.Empty;
+      textImageId.Text = imageId.Contains(":") ? imageId.Substring(imageId.IndexOf(":") + 1) : imageId;
+      var parentImageId = imageResponse != null ? imageResponse.ParentID : string.Empty;
+      textParentId.Text = parentImageId.Contains(":") ? parentImageId.Substring(parentImageId.IndexOf(":") + 1) : parentImageId;
       textCreatedDate.Text = imageResponse != null ? imageResponse.Created.ToShortDateString() : string.Empty;
       textVirtualSize.Text = imageResponse != null ? HelperFunctions.GetSizeString(imageResponse.VirtualSize) : string.Empty;
       textSize.Text = imageResponse != null ? HelperFunctions.GetSizeString(imageResponse.Size) : string.Empty;
       textSharedSize.Text = imageResponse != null && imageResponse.SharedSize > -1 ? HelperFunctions.GetSizeString(imageResponse.SharedSize) : string.Empty;
       textContainers.Text = imageResponse != null && imageResponse.Containers > -1 ? imageResponse.Containers.ToString() : string.Empty;
-      gridRepositoryDigests.DataSource = imageResponse?.RepoDigests;
-      gridRepositoryTags.DataSource = imageResponse?.RepoTags;
-      gridLabels.DataSource = imageResponse?.Labels;
+      using (var token = gridControlState.StoreViewState(gridViewRepositoryDigests))
+        gridRepositoryDigests.DataSource = imageResponse?.RepoDigests;
+
+      using (var token = gridControlState.StoreViewState(gridViewRepositoryTags))
+        gridRepositoryTags.DataSource = imageResponse?.RepoTags;
+
+      using (var token = gridControlState.StoreViewState(gridViewLabels))
+        gridLabels.DataSource = imageResponse?.Labels;
+
       UpdateButtons();
     }
 
@@ -109,7 +139,7 @@ namespace Docker.Developer.Tools.Controls
 
     private void gridViewImageList_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
     {
-      if (e.Column == colRepositoryName)
+      if (e.Column == colIDShort)
       {
         e.Appearance.ForeColor = HelperFunctions.GetDisabledColor();
       }

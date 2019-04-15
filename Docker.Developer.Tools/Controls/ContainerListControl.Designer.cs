@@ -35,6 +35,7 @@
       this.gridViewContainerList = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
       this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
       this.colName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+      this.colContainerIdString = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.colID = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.colImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -88,7 +89,6 @@
       this.colVolumesPropagation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.colVolumesSource = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.colVolumesDestination = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-      this.colVolumesId = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.textImageId = new DevExpress.XtraEditors.TextEdit();
       this.textContainerId = new DevExpress.XtraEditors.TextEdit();
       this.textImageName = new DevExpress.XtraEditors.TextEdit();
@@ -96,18 +96,18 @@
       this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
       this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
       this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
       this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
       this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-      this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
       this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
       this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+      this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
       this.barButtonItemStopContainer = new DevExpress.XtraBars.BarButtonItem();
@@ -130,6 +130,7 @@
       this.ribbonPageContainers = new DevExpress.XtraBars.Ribbon.RibbonPage();
       this.ribbonPageGroupContainers = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
       this.ribbonPageGroupManageContainer = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+      this.gridControlState = new Docker.Developer.Tools.GridControlState.GridControlState(this.components);
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).BeginInit();
@@ -161,18 +162,18 @@
       ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteContainer)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteAllContainers)).BeginInit();
@@ -181,7 +182,7 @@
       // 
       // gridContainerList
       // 
-      this.gridContainerList.AllowRestoreSelectionAndFocusedRow = DevExpress.Utils.DefaultBoolean.True;
+      this.gridContainerList.AllowRestoreSelectionAndFocusedRow = DevExpress.Utils.DefaultBoolean.False;
       this.gridContainerList.DataSource = this.virtualServerModeSource;
       this.gridContainerList.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridContainerList.Location = new System.Drawing.Point(0, 0);
@@ -190,7 +191,7 @@
       this.gridContainerList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBox1,
             this.repositoryItemImageEdit1});
-      this.gridContainerList.Size = new System.Drawing.Size(332, 829);
+      this.gridContainerList.Size = new System.Drawing.Size(332, 661);
       this.gridContainerList.TabIndex = 0;
       this.gridContainerList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewContainerList});
@@ -208,11 +209,13 @@
       this.gridViewContainerList.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.colID,
             this.colName,
+            this.colContainerIdString,
             this.colImage,
             this.colState});
       this.gridViewContainerList.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
       this.gridViewContainerList.GridControl = this.gridContainerList;
       this.gridViewContainerList.Images = this.svgImageCollection;
+      this.gridControlState.SetKeyColumn(this.gridViewContainerList, this.colID);
       this.gridViewContainerList.Name = "gridViewContainerList";
       this.gridViewContainerList.OptionsBehavior.Editable = false;
       this.gridViewContainerList.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -223,6 +226,8 @@
       this.gridViewContainerList.OptionsView.ShowIndicator = false;
       this.gridViewContainerList.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.False;
       this.gridViewContainerList.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Panel;
+      this.gridViewContainerList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colName, DevExpress.Data.ColumnSortOrder.Ascending)});
       this.gridViewContainerList.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewContainerList_CustomDrawCell);
       this.gridViewContainerList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewContainerList_FocusedRowChanged);
       this.gridViewContainerList.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridViewContainerList_CustomUnboundColumnData);
@@ -233,11 +238,12 @@
       // 
       this.gridBand1.Caption = "gridBand1";
       this.gridBand1.Columns.Add(this.colName);
+      this.gridBand1.Columns.Add(this.colContainerIdString);
       this.gridBand1.Columns.Add(this.colID);
       this.gridBand1.Columns.Add(this.colImage);
       this.gridBand1.Name = "gridBand1";
       this.gridBand1.VisibleIndex = 0;
-      this.gridBand1.Width = 368;
+      this.gridBand1.Width = 270;
       // 
       // colName
       // 
@@ -249,7 +255,20 @@
       this.colName.RowCount = 2;
       this.colName.UnboundType = DevExpress.Data.UnboundColumnType.String;
       this.colName.Visible = true;
-      this.colName.Width = 368;
+      this.colName.Width = 181;
+      // 
+      // colContainerIdString
+      // 
+      this.colContainerIdString.AppearanceCell.Options.UseTextOptions = true;
+      this.colContainerIdString.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+      this.colContainerIdString.Caption = "ContainerId";
+      this.colContainerIdString.FieldName = "colContainerIdString";
+      this.colContainerIdString.MinWidth = 60;
+      this.colContainerIdString.Name = "colContainerIdString";
+      this.colContainerIdString.OptionsColumn.FixedWidth = true;
+      this.colContainerIdString.UnboundType = DevExpress.Data.UnboundColumnType.String;
+      this.colContainerIdString.Visible = true;
+      this.colContainerIdString.Width = 60;
       // 
       // colID
       // 
@@ -264,7 +283,7 @@
       this.colImage.RowIndex = 1;
       this.colImage.UnboundType = DevExpress.Data.UnboundColumnType.String;
       this.colImage.Visible = true;
-      this.colImage.Width = 368;
+      this.colImage.Width = 270;
       // 
       // gridBand2
       // 
@@ -282,7 +301,6 @@
       this.colState.FieldName = "colState";
       this.colState.MinWidth = 60;
       this.colState.Name = "colState";
-      this.colState.OptionsColumn.AllowSize = false;
       this.colState.OptionsColumn.FixedWidth = true;
       this.colState.UnboundType = DevExpress.Data.UnboundColumnType.Object;
       this.colState.Visible = true;
@@ -336,7 +354,7 @@
       this.splitContainerControl1.Panel1.Text = "Panel1";
       this.splitContainerControl1.Panel2.Controls.Add(this.layoutControl1);
       this.splitContainerControl1.Panel2.Text = "Panel2";
-      this.splitContainerControl1.Size = new System.Drawing.Size(1510, 829);
+      this.splitContainerControl1.Size = new System.Drawing.Size(1200, 661);
       this.splitContainerControl1.SplitterPosition = 332;
       this.splitContainerControl1.TabIndex = 3;
       // 
@@ -362,16 +380,16 @@
       this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1112, 285, 650, 706);
       this.layoutControl1.OptionsView.UseDefaultDragAndDropRendering = false;
       this.layoutControl1.Root = this.Root;
-      this.layoutControl1.Size = new System.Drawing.Size(1172, 829);
+      this.layoutControl1.Size = new System.Drawing.Size(862, 661);
       this.layoutControl1.TabIndex = 0;
       this.layoutControl1.Text = "layoutControl1";
       // 
       // gridLabels
       // 
-      this.gridLabels.Location = new System.Drawing.Point(588, 468);
+      this.gridLabels.Location = new System.Drawing.Point(454, 384);
       this.gridLabels.MainView = this.gridViewLabels;
       this.gridLabels.Name = "gridLabels";
-      this.gridLabels.Size = new System.Drawing.Size(572, 349);
+      this.gridLabels.Size = new System.Drawing.Size(396, 265);
       this.gridLabels.TabIndex = 19;
       this.gridLabels.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewLabels});
@@ -383,11 +401,14 @@
             this.colLabelsValue});
       this.gridViewLabels.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
       this.gridViewLabels.GridControl = this.gridLabels;
+      this.gridControlState.SetKeyColumn(this.gridViewLabels, this.colLabelsKey);
       this.gridViewLabels.Name = "gridViewLabels";
       this.gridViewLabels.OptionsBehavior.Editable = false;
       this.gridViewLabels.OptionsSelection.EnableAppearanceFocusedCell = false;
       this.gridViewLabels.OptionsView.ShowGroupPanel = false;
       this.gridViewLabels.OptionsView.ShowIndicator = false;
+      this.gridViewLabels.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colLabelsKey, DevExpress.Data.ColumnSortOrder.Ascending)});
       // 
       // colLabelsKey
       // 
@@ -407,10 +428,10 @@
       // 
       // gridNetworkSettings
       // 
-      this.gridNetworkSettings.Location = new System.Drawing.Point(588, 100);
+      this.gridNetworkSettings.Location = new System.Drawing.Point(12, 384);
       this.gridNetworkSettings.MainView = this.gridViewNetworkSettings;
       this.gridNetworkSettings.Name = "gridNetworkSettings";
-      this.gridNetworkSettings.Size = new System.Drawing.Size(572, 348);
+      this.gridNetworkSettings.Size = new System.Drawing.Size(438, 265);
       this.gridNetworkSettings.TabIndex = 18;
       this.gridNetworkSettings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNetworkSettings});
@@ -437,6 +458,7 @@
             this.colNetworkLinkLocalIPs});
       this.gridViewNetworkSettings.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
       this.gridViewNetworkSettings.GridControl = this.gridNetworkSettings;
+      this.gridControlState.SetKeyColumn(this.gridViewNetworkSettings, this.colNetworkEndpointID);
       this.gridViewNetworkSettings.Name = "gridViewNetworkSettings";
       this.gridViewNetworkSettings.OptionsBehavior.Editable = false;
       this.gridViewNetworkSettings.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -444,6 +466,8 @@
       this.gridViewNetworkSettings.OptionsView.ShowBands = false;
       this.gridViewNetworkSettings.OptionsView.ShowGroupPanel = false;
       this.gridViewNetworkSettings.OptionsView.ShowIndicator = false;
+      this.gridViewNetworkSettings.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colNetworkMacAddress, DevExpress.Data.ColumnSortOrder.Ascending)});
       this.gridViewNetworkSettings.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridViewNetworkSettings_CustomUnboundColumnData);
       this.gridViewNetworkSettings.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridViewNetworkSettings_CustomColumnDisplayText);
       // 
@@ -606,64 +630,64 @@
       // 
       // textSizeRW
       // 
-      this.textSizeRW.Location = new System.Drawing.Point(672, 60);
+      this.textSizeRW.Location = new System.Drawing.Point(538, 60);
       this.textSizeRW.Name = "textSizeRW";
       this.textSizeRW.Properties.ReadOnly = true;
-      this.textSizeRW.Size = new System.Drawing.Size(199, 20);
+      this.textSizeRW.Size = new System.Drawing.Size(112, 20);
       this.textSizeRW.StyleController = this.layoutControl1;
       this.textSizeRW.TabIndex = 17;
       // 
       // textSizeRootFS
       // 
-      this.textSizeRootFS.Location = new System.Drawing.Point(959, 60);
+      this.textSizeRootFS.Location = new System.Drawing.Point(738, 60);
       this.textSizeRootFS.Name = "textSizeRootFS";
       this.textSizeRootFS.Properties.ReadOnly = true;
-      this.textSizeRootFS.Size = new System.Drawing.Size(201, 20);
+      this.textSizeRootFS.Size = new System.Drawing.Size(112, 20);
       this.textSizeRootFS.StyleController = this.layoutControl1;
       this.textSizeRootFS.TabIndex = 16;
       // 
       // textStatus
       // 
-      this.textStatus.Location = new System.Drawing.Point(383, 60);
+      this.textStatus.Location = new System.Drawing.Point(738, 12);
       this.textStatus.Name = "textStatus";
       this.textStatus.Properties.ReadOnly = true;
-      this.textStatus.Size = new System.Drawing.Size(201, 20);
+      this.textStatus.Size = new System.Drawing.Size(112, 20);
       this.textStatus.StyleController = this.layoutControl1;
       this.textStatus.TabIndex = 15;
       // 
       // textState
       // 
-      this.textState.Location = new System.Drawing.Point(96, 60);
+      this.textState.Location = new System.Drawing.Point(538, 12);
       this.textState.Name = "textState";
       this.textState.Properties.ReadOnly = true;
-      this.textState.Size = new System.Drawing.Size(199, 20);
+      this.textState.Size = new System.Drawing.Size(112, 20);
       this.textState.StyleController = this.layoutControl1;
       this.textState.TabIndex = 14;
       // 
       // textCommand
       // 
-      this.textCommand.Location = new System.Drawing.Point(959, 36);
+      this.textCommand.Location = new System.Drawing.Point(738, 36);
       this.textCommand.Name = "textCommand";
       this.textCommand.Properties.ReadOnly = true;
-      this.textCommand.Size = new System.Drawing.Size(201, 20);
+      this.textCommand.Size = new System.Drawing.Size(112, 20);
       this.textCommand.StyleController = this.layoutControl1;
       this.textCommand.TabIndex = 13;
       // 
       // textCreatedDate
       // 
-      this.textCreatedDate.Location = new System.Drawing.Point(672, 36);
+      this.textCreatedDate.Location = new System.Drawing.Point(538, 36);
       this.textCreatedDate.Name = "textCreatedDate";
       this.textCreatedDate.Properties.ReadOnly = true;
-      this.textCreatedDate.Size = new System.Drawing.Size(199, 20);
+      this.textCreatedDate.Size = new System.Drawing.Size(112, 20);
       this.textCreatedDate.StyleController = this.layoutControl1;
       this.textCreatedDate.TabIndex = 12;
       // 
       // gridPorts
       // 
-      this.gridPorts.Location = new System.Drawing.Point(12, 468);
+      this.gridPorts.Location = new System.Drawing.Point(454, 100);
       this.gridPorts.MainView = this.gridViewPorts;
       this.gridPorts.Name = "gridPorts";
-      this.gridPorts.Size = new System.Drawing.Size(572, 349);
+      this.gridPorts.Size = new System.Drawing.Size(396, 264);
       this.gridPorts.TabIndex = 11;
       this.gridPorts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPorts});
@@ -677,6 +701,7 @@
             this.colPortsType});
       this.gridViewPorts.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
       this.gridViewPorts.GridControl = this.gridPorts;
+      this.gridControlState.SetKeyColumn(this.gridViewPorts, this.colPortsPrivatePort);
       this.gridViewPorts.Name = "gridViewPorts";
       this.gridViewPorts.OptionsBehavior.Editable = false;
       this.gridViewPorts.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -722,7 +747,7 @@
       this.gridVolumes.Location = new System.Drawing.Point(12, 100);
       this.gridVolumes.MainView = this.gridViewVolumes;
       this.gridVolumes.Name = "gridVolumes";
-      this.gridVolumes.Size = new System.Drawing.Size(572, 348);
+      this.gridVolumes.Size = new System.Drawing.Size(438, 264);
       this.gridVolumes.TabIndex = 10;
       this.gridVolumes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewVolumes});
@@ -732,7 +757,6 @@
       this.gridViewVolumes.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand3});
       this.gridViewVolumes.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
-            this.colVolumesId,
             this.colVolumesType,
             this.colVolumesName,
             this.colVolumesSource,
@@ -742,6 +766,7 @@
             this.colVolumesPropagation});
       this.gridViewVolumes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
       this.gridViewVolumes.GridControl = this.gridVolumes;
+      this.gridControlState.SetKeyColumn(this.gridViewVolumes, this.colVolumesDestination);
       this.gridViewVolumes.Name = "gridViewVolumes";
       this.gridViewVolumes.OptionsBehavior.Editable = false;
       this.gridViewVolumes.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -750,7 +775,7 @@
       this.gridViewVolumes.OptionsView.ShowGroupPanel = false;
       this.gridViewVolumes.OptionsView.ShowIndicator = false;
       this.gridViewVolumes.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colVolumesId, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colVolumesDestination, DevExpress.Data.ColumnSortOrder.Ascending)});
       this.gridViewVolumes.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridViewVolumes_CustomUnboundColumnData);
       // 
       // gridBand3
@@ -777,8 +802,9 @@
       // colVolumesName
       // 
       this.colVolumesName.Caption = "Name";
-      this.colVolumesName.FieldName = "Name";
+      this.colVolumesName.FieldName = "colName";
       this.colVolumesName.Name = "colVolumesName";
+      this.colVolumesName.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
       this.colVolumesName.Visible = true;
       // 
       // colVolumesDriver
@@ -819,19 +845,12 @@
       this.colVolumesDestination.RowIndex = 2;
       this.colVolumesDestination.Visible = true;
       // 
-      // colVolumesId
-      // 
-      this.colVolumesId.Caption = "Id";
-      this.colVolumesId.FieldName = "colVolumesId";
-      this.colVolumesId.Name = "colVolumesId";
-      this.colVolumesId.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-      // 
       // textImageId
       // 
-      this.textImageId.Location = new System.Drawing.Point(672, 12);
+      this.textImageId.Location = new System.Drawing.Point(96, 36);
       this.textImageId.Name = "textImageId";
       this.textImageId.Properties.ReadOnly = true;
-      this.textImageId.Size = new System.Drawing.Size(488, 20);
+      this.textImageId.Size = new System.Drawing.Size(354, 20);
       this.textImageId.StyleController = this.layoutControl1;
       this.textImageId.TabIndex = 7;
       // 
@@ -840,25 +859,25 @@
       this.textContainerId.Location = new System.Drawing.Point(96, 12);
       this.textContainerId.Name = "textContainerId";
       this.textContainerId.Properties.ReadOnly = true;
-      this.textContainerId.Size = new System.Drawing.Size(488, 20);
+      this.textContainerId.Size = new System.Drawing.Size(354, 20);
       this.textContainerId.StyleController = this.layoutControl1;
       this.textContainerId.TabIndex = 6;
       // 
       // textImageName
       // 
-      this.textImageName.Location = new System.Drawing.Point(96, 36);
+      this.textImageName.Location = new System.Drawing.Point(317, 60);
       this.textImageName.Name = "textImageName";
       this.textImageName.Properties.ReadOnly = true;
-      this.textImageName.Size = new System.Drawing.Size(199, 20);
+      this.textImageName.Size = new System.Drawing.Size(133, 20);
       this.textImageName.StyleController = this.layoutControl1;
       this.textImageName.TabIndex = 5;
       // 
       // textContainerName
       // 
-      this.textContainerName.Location = new System.Drawing.Point(383, 36);
+      this.textContainerName.Location = new System.Drawing.Point(96, 60);
       this.textContainerName.Name = "textContainerName";
       this.textContainerName.Properties.ReadOnly = true;
-      this.textContainerName.Size = new System.Drawing.Size(201, 20);
+      this.textContainerName.Size = new System.Drawing.Size(133, 20);
       this.textContainerName.StyleController = this.layoutControl1;
       this.textContainerName.TabIndex = 4;
       // 
@@ -869,20 +888,20 @@
       this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem3,
             this.layoutControlItem7,
-            this.layoutControlItem8,
-            this.layoutControlItem9,
-            this.layoutControlItem13,
             this.layoutControlItem14,
-            this.layoutControlItem11,
-            this.layoutControlItem10,
-            this.layoutControlItem12,
-            this.layoutControlItem4,
             this.layoutControlItem2,
-            this.layoutControlItem1,
             this.layoutControlItem5,
-            this.layoutControlItem6});
+            this.layoutControlItem6,
+            this.layoutControlItem4,
+            this.layoutControlItem9,
+            this.layoutControlItem10,
+            this.layoutControlItem11,
+            this.layoutControlItem12,
+            this.layoutControlItem8,
+            this.layoutControlItem13,
+            this.layoutControlItem1});
       this.Root.Name = "Root";
-      this.Root.Size = new System.Drawing.Size(1172, 829);
+      this.Root.Size = new System.Drawing.Size(862, 661);
       this.Root.TextVisible = false;
       // 
       // layoutControlItem3
@@ -890,7 +909,7 @@
       this.layoutControlItem3.Control = this.textContainerId;
       this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
       this.layoutControlItem3.Name = "layoutControlItem3";
-      this.layoutControlItem3.Size = new System.Drawing.Size(576, 24);
+      this.layoutControlItem3.Size = new System.Drawing.Size(442, 24);
       this.layoutControlItem3.Text = "Container id";
       this.layoutControlItem3.TextSize = new System.Drawing.Size(81, 13);
       // 
@@ -899,125 +918,125 @@
       this.layoutControlItem7.Control = this.gridVolumes;
       this.layoutControlItem7.Location = new System.Drawing.Point(0, 72);
       this.layoutControlItem7.Name = "layoutControlItem7";
-      this.layoutControlItem7.Size = new System.Drawing.Size(576, 368);
+      this.layoutControlItem7.Size = new System.Drawing.Size(442, 284);
       this.layoutControlItem7.Text = "Volumes";
       this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem7.TextSize = new System.Drawing.Size(81, 13);
       // 
-      // layoutControlItem8
-      // 
-      this.layoutControlItem8.Control = this.gridPorts;
-      this.layoutControlItem8.Location = new System.Drawing.Point(0, 440);
-      this.layoutControlItem8.Name = "layoutControlItem8";
-      this.layoutControlItem8.Size = new System.Drawing.Size(576, 369);
-      this.layoutControlItem8.Text = "Ports";
-      this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Top;
-      this.layoutControlItem8.TextSize = new System.Drawing.Size(81, 13);
-      // 
-      // layoutControlItem9
-      // 
-      this.layoutControlItem9.Control = this.textState;
-      this.layoutControlItem9.Location = new System.Drawing.Point(0, 48);
-      this.layoutControlItem9.Name = "layoutControlItem9";
-      this.layoutControlItem9.Size = new System.Drawing.Size(287, 24);
-      this.layoutControlItem9.Text = "State";
-      this.layoutControlItem9.TextSize = new System.Drawing.Size(81, 13);
-      // 
-      // layoutControlItem13
-      // 
-      this.layoutControlItem13.Control = this.gridNetworkSettings;
-      this.layoutControlItem13.Location = new System.Drawing.Point(576, 72);
-      this.layoutControlItem13.Name = "layoutControlItem13";
-      this.layoutControlItem13.Size = new System.Drawing.Size(576, 368);
-      this.layoutControlItem13.Text = "Network settings";
-      this.layoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top;
-      this.layoutControlItem13.TextSize = new System.Drawing.Size(81, 13);
-      // 
       // layoutControlItem14
       // 
       this.layoutControlItem14.Control = this.gridLabels;
-      this.layoutControlItem14.Location = new System.Drawing.Point(576, 440);
+      this.layoutControlItem14.Location = new System.Drawing.Point(442, 356);
       this.layoutControlItem14.Name = "layoutControlItem14";
-      this.layoutControlItem14.Size = new System.Drawing.Size(576, 369);
+      this.layoutControlItem14.Size = new System.Drawing.Size(400, 285);
       this.layoutControlItem14.Text = "Labels";
       this.layoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem14.TextSize = new System.Drawing.Size(81, 13);
       // 
-      // layoutControlItem11
-      // 
-      this.layoutControlItem11.Control = this.textSizeRootFS;
-      this.layoutControlItem11.Location = new System.Drawing.Point(863, 48);
-      this.layoutControlItem11.Name = "layoutControlItem11";
-      this.layoutControlItem11.Size = new System.Drawing.Size(289, 24);
-      this.layoutControlItem11.Text = "SizeRootFS";
-      this.layoutControlItem11.TextSize = new System.Drawing.Size(81, 13);
-      // 
-      // layoutControlItem10
-      // 
-      this.layoutControlItem10.Control = this.textStatus;
-      this.layoutControlItem10.Location = new System.Drawing.Point(287, 48);
-      this.layoutControlItem10.Name = "layoutControlItem10";
-      this.layoutControlItem10.Size = new System.Drawing.Size(289, 24);
-      this.layoutControlItem10.Text = "Status";
-      this.layoutControlItem10.TextSize = new System.Drawing.Size(81, 13);
-      // 
-      // layoutControlItem12
-      // 
-      this.layoutControlItem12.Control = this.textSizeRW;
-      this.layoutControlItem12.Location = new System.Drawing.Point(576, 48);
-      this.layoutControlItem12.Name = "layoutControlItem12";
-      this.layoutControlItem12.Size = new System.Drawing.Size(287, 24);
-      this.layoutControlItem12.Text = "SizeRW";
-      this.layoutControlItem12.TextSize = new System.Drawing.Size(81, 13);
-      // 
-      // layoutControlItem4
-      // 
-      this.layoutControlItem4.Control = this.textImageId;
-      this.layoutControlItem4.Location = new System.Drawing.Point(576, 0);
-      this.layoutControlItem4.Name = "layoutControlItem4";
-      this.layoutControlItem4.Size = new System.Drawing.Size(576, 24);
-      this.layoutControlItem4.Text = "Image id";
-      this.layoutControlItem4.TextSize = new System.Drawing.Size(81, 13);
-      // 
       // layoutControlItem2
       // 
       this.layoutControlItem2.Control = this.textImageName;
-      this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
+      this.layoutControlItem2.Location = new System.Drawing.Point(221, 48);
       this.layoutControlItem2.Name = "layoutControlItem2";
-      this.layoutControlItem2.Size = new System.Drawing.Size(287, 24);
+      this.layoutControlItem2.Size = new System.Drawing.Size(221, 24);
       this.layoutControlItem2.Text = "Image name";
       this.layoutControlItem2.TextSize = new System.Drawing.Size(81, 13);
-      // 
-      // layoutControlItem1
-      // 
-      this.layoutControlItem1.Control = this.textContainerName;
-      this.layoutControlItem1.Location = new System.Drawing.Point(287, 24);
-      this.layoutControlItem1.Name = "layoutControlItem1";
-      this.layoutControlItem1.Size = new System.Drawing.Size(289, 24);
-      this.layoutControlItem1.Text = "Container name";
-      this.layoutControlItem1.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem5
       // 
       this.layoutControlItem5.Control = this.textCreatedDate;
-      this.layoutControlItem5.Location = new System.Drawing.Point(576, 24);
+      this.layoutControlItem5.Location = new System.Drawing.Point(442, 24);
       this.layoutControlItem5.Name = "layoutControlItem5";
-      this.layoutControlItem5.Size = new System.Drawing.Size(287, 24);
+      this.layoutControlItem5.Size = new System.Drawing.Size(200, 24);
       this.layoutControlItem5.Text = "Created date";
       this.layoutControlItem5.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem6
       // 
       this.layoutControlItem6.Control = this.textCommand;
-      this.layoutControlItem6.Location = new System.Drawing.Point(863, 24);
+      this.layoutControlItem6.Location = new System.Drawing.Point(642, 24);
       this.layoutControlItem6.Name = "layoutControlItem6";
-      this.layoutControlItem6.Size = new System.Drawing.Size(289, 24);
+      this.layoutControlItem6.Size = new System.Drawing.Size(200, 24);
       this.layoutControlItem6.Text = "Command";
       this.layoutControlItem6.TextSize = new System.Drawing.Size(81, 13);
       // 
+      // layoutControlItem4
+      // 
+      this.layoutControlItem4.Control = this.textImageId;
+      this.layoutControlItem4.Location = new System.Drawing.Point(0, 24);
+      this.layoutControlItem4.Name = "layoutControlItem4";
+      this.layoutControlItem4.Size = new System.Drawing.Size(442, 24);
+      this.layoutControlItem4.Text = "Image id";
+      this.layoutControlItem4.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem9
+      // 
+      this.layoutControlItem9.Control = this.textState;
+      this.layoutControlItem9.Location = new System.Drawing.Point(442, 0);
+      this.layoutControlItem9.Name = "layoutControlItem9";
+      this.layoutControlItem9.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem9.Text = "State";
+      this.layoutControlItem9.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem10
+      // 
+      this.layoutControlItem10.Control = this.textStatus;
+      this.layoutControlItem10.Location = new System.Drawing.Point(642, 0);
+      this.layoutControlItem10.Name = "layoutControlItem10";
+      this.layoutControlItem10.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem10.Text = "Status";
+      this.layoutControlItem10.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem11
+      // 
+      this.layoutControlItem11.Control = this.textSizeRootFS;
+      this.layoutControlItem11.Location = new System.Drawing.Point(642, 48);
+      this.layoutControlItem11.Name = "layoutControlItem11";
+      this.layoutControlItem11.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem11.Text = "SizeRootFS";
+      this.layoutControlItem11.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem12
+      // 
+      this.layoutControlItem12.Control = this.textSizeRW;
+      this.layoutControlItem12.Location = new System.Drawing.Point(442, 48);
+      this.layoutControlItem12.Name = "layoutControlItem12";
+      this.layoutControlItem12.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem12.Text = "SizeRW";
+      this.layoutControlItem12.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem8
+      // 
+      this.layoutControlItem8.Control = this.gridPorts;
+      this.layoutControlItem8.Location = new System.Drawing.Point(442, 72);
+      this.layoutControlItem8.Name = "layoutControlItem8";
+      this.layoutControlItem8.Size = new System.Drawing.Size(400, 284);
+      this.layoutControlItem8.Text = "Ports";
+      this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Top;
+      this.layoutControlItem8.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem13
+      // 
+      this.layoutControlItem13.Control = this.gridNetworkSettings;
+      this.layoutControlItem13.Location = new System.Drawing.Point(0, 356);
+      this.layoutControlItem13.Name = "layoutControlItem13";
+      this.layoutControlItem13.Size = new System.Drawing.Size(442, 285);
+      this.layoutControlItem13.Text = "Network settings";
+      this.layoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top;
+      this.layoutControlItem13.TextSize = new System.Drawing.Size(81, 13);
+      // 
+      // layoutControlItem1
+      // 
+      this.layoutControlItem1.Control = this.textContainerName;
+      this.layoutControlItem1.Location = new System.Drawing.Point(0, 48);
+      this.layoutControlItem1.Name = "layoutControlItem1";
+      this.layoutControlItem1.Size = new System.Drawing.Size(221, 24);
+      this.layoutControlItem1.Text = "Container name";
+      this.layoutControlItem1.TextSize = new System.Drawing.Size(81, 13);
+      // 
       // timer
       // 
-      this.timer.Interval = 2000;
+      this.timer.Interval = 5000;
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
       // 
       // ribbonControl
@@ -1044,7 +1063,7 @@
       this.ribbonControl.Name = "ribbonControl";
       this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageContainers});
-      this.ribbonControl.Size = new System.Drawing.Size(1510, 139);
+      this.ribbonControl.Size = new System.Drawing.Size(1200, 139);
       // 
       // barButtonItemStopContainer
       // 
@@ -1214,7 +1233,7 @@
       this.Controls.Add(this.splitContainerControl1);
       this.Controls.Add(this.ribbonControl);
       this.Name = "ContainerListControl";
-      this.Size = new System.Drawing.Size(1510, 968);
+      this.Size = new System.Drawing.Size(1200, 800);
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).EndInit();
@@ -1246,18 +1265,18 @@
       ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteContainer)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteAllContainers)).EndInit();
@@ -1275,11 +1294,9 @@
     private DevExpress.XtraLayout.LayoutControlGroup Root;
     private DevExpress.Data.VirtualServerModeSource virtualServerModeSource;
     private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView gridViewContainerList;
-    private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colName;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colID;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colImage;
-    private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colState;
     private DevExpress.Utils.SvgImageCollection svgImageCollection;
     private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
@@ -1310,7 +1327,6 @@
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colVolumesMode;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colVolumesPropagation;
     private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
-    private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colVolumesId;
     private DevExpress.XtraGrid.Columns.GridColumn colPortsIP;
     private DevExpress.XtraGrid.Columns.GridColumn colPortsPrivatePort;
     private DevExpress.XtraGrid.Columns.GridColumn colPublicPort;
@@ -1369,5 +1385,9 @@
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colNetworkLinkLocalIPs;
     private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
     private DevExpress.XtraBars.BarButtonItem barButtonItemOpenMappedFolder;
+    private GridControlState.GridControlState gridControlState;
+    private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+    private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colContainerIdString;
+    private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
   }
 }
