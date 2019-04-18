@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars.Ribbon;
+﻿using AutoUpdaterDotNET;
+using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using Docker.Developer.Tools.Controls;
@@ -23,6 +24,8 @@ namespace Docker.Developer.Tools
       imagesListControl.Initialize(_dockerClient);
 
       RibbonTabChanging(ribbonPageContainers);
+
+      AutoUpdater.Start("http://docker-developer-tools.net/UpdateManifest.xml");
     }
 
     private async void FormMain_Load(object sender, EventArgs e)

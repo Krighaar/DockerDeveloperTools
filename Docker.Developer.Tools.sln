@@ -7,6 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docker.Developer.Tools", "D
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Docker.Developer.Tools.Setup", "Docker.Developer.Tools.Setup\Docker.Developer.Tools.Setup.wixproj", "{9AFE3537-BDB8-449E-B833-9A9C69234E12}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{246E0B42-8F2C-4D57-A288-B00AD3417D92}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		NuGet.config.example = NuGet.config.example
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure Pipeline", "Azure Pipeline", "{2E3F495C-77DC-42B4-851E-C406DC2135E3}"
+	ProjectSection(SolutionItems) = preProject
+		Azure Pipeline\latest.php = Azure Pipeline\latest.php
+		Azure Pipeline\UpdateManifest.xml = Azure Pipeline\UpdateManifest.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

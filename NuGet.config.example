@@ -3,5 +3,6 @@
   <packageSources>
     <clear />
     <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+		<add key="DevExpress" value="https://nuget.devexpress.com/{feed-authorization-key}/api" />
   </packageSources>
 </configuration>

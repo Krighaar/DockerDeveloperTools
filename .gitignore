@@ -5,6 +5,7 @@
 
 # Custom folders/files
 licenses.licx.bak
+NuGet.config
 
 # User-specific files
 *.suo

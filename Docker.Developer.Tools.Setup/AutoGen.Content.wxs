@@ -2,6 +2,9 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmp9A0B135B99BD459392677DD6B1309C3F" Guid="*">
+                <File Id="fil438506B9C5935616F166C6B5B487ED4B" Source="$(var.Docker.Developer.Tools.ProjectDir)\Icon.ico" />
+            </Component>
             <Directory Id="dirF745B7B2CB892799DAE17E014E210AF0" Name="Resources">
                 <Component Id="cmp46A0E1673457556C2011DD65DEFBCDD7" Guid="*">
                     <File Id="fil14A4F412554BF6F454BCC3B98693703B" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerAttach.svg" />
@@ -32,6 +35,7 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="Docker.Developer.Tools.Content">
+            <ComponentRef Id="cmp9A0B135B99BD459392677DD6B1309C3F" />
             <ComponentRef Id="cmp46A0E1673457556C2011DD65DEFBCDD7" />
             <ComponentRef Id="cmp45F46F7B82589F96E0DED70878A60DF1" />
             <ComponentRef Id="cmp2248CB43539CD9970881900D91021F13" />

@@ -3,6 +3,9 @@
     <?include Common.wxi?>
     <Fragment>
         <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmp62A610FDDE92CF51D05322BEF0E226B2" Guid="*">
+                <File Id="fil734562E1142DB06F0A4D7B4FFCE2E13D" KeyPath="yes" Source="$(var.ProjectTargetDir)\AutoUpdater.NET.dll" />
+            </Component>
             <Component Id="cmp8599C26B8F7F3AAE3A2041BBB8329755" Guid="*">
                 <File Id="filE344CBF8DA95E41E488ACC5167A31AAA" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.Data.v18.2.dll" />
             </Component>
@@ -15,11 +18,17 @@
             <Component Id="cmp7D5FB7BF1928C8D3743998EE110459EC" Guid="*">
                 <File Id="fil1B0F481903262F4D60A98598D26080F8" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.Pdf.v18.2.Core.dll" />
             </Component>
+            <Component Id="cmpF1C4C53EA0805BB2B903A636B65F49AA" Guid="*">
+                <File Id="fil9FD1F4AA5E065C0D1D7833E5451BF2E7" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.PivotGrid.v18.2.Core.dll" />
+            </Component>
             <Component Id="cmp42F5F7831F817E65D9C7C3E02FD3E606" Guid="*">
                 <File Id="fil5A841556F97D5BF94B15389AF4DAF261" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.Printing.v18.2.Core.dll" />
             </Component>
             <Component Id="cmpD404ECD0606D6C78E651997983B0B8D9" Guid="*">
                 <File Id="fil10D464EA764F7592C1B818A0ADE89E98" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.RichEdit.v18.2.Core.dll" />
+            </Component>
+            <Component Id="cmpF133D77D2CAFE7B90B907C59583EC1F9" Guid="*">
+                <File Id="fil1B8DFF355F0227E81B080D740430B217" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.RichEdit.v18.2.Export.dll" />
             </Component>
             <Component Id="cmp1730D9B3F92E0F0EECCDE81F1C9301B2" Guid="*">
                 <File Id="filACEE93F7F4D9A7E04A3790B850F8F294" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.Sparkline.v18.2.Core.dll" />
@@ -39,11 +48,23 @@
             <Component Id="cmp7C8E5651F0BA72DAEBC3D0D2D7A1EAFF" Guid="*">
                 <File Id="filE7C22891C83A48937E5889B2A7167CA0" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraLayout.v18.2.dll" />
             </Component>
+            <Component Id="cmp91D502EB751C68D3B5A6A00371B2B056" Guid="*">
+                <File Id="fil9E9DE8220E42B25394E863FA03155C2E" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraNavBar.v18.2.dll" />
+            </Component>
+            <Component Id="cmpA03795AA7CC53235E5E40BA1F1B80673" Guid="*">
+                <File Id="fil02885E191502C0E3C3C2ABBD790CAD87" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraPivotGrid.v18.2.dll" />
+            </Component>
             <Component Id="cmp154E1B3F848D83A8739386918095E78C" Guid="*">
                 <File Id="fil1F1CA6D54B8294399C081255B46A7DD8" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraPrinting.v18.2.dll" />
             </Component>
             <Component Id="cmp765457A6CFBE11F8B7F5817F033848F9" Guid="*">
                 <File Id="fil6C154AEC1EED2E12FE44329B10B4B8B7" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraTreeList.v18.2.dll" />
+            </Component>
+            <Component Id="cmp1F7C3280EA18137586BAFBF88C1E4608" Guid="*">
+                <File Id="fil2824C79FAE32C9709B6F03E3BC267C56" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraVerticalGrid.v18.2.dll" />
+            </Component>
+            <Component Id="cmpC895D32380969B56103A03B07027B261" Guid="*">
+                <File Id="fil194929B733E16D7F10A0683CFBAFB03F" KeyPath="yes" Source="$(var.ProjectTargetDir)\DevExpress.XtraWizard.v18.2.dll" />
             </Component>
             <Component Id="cmp66C40B7E58E4A434BE0E676699DA1577" Guid="*">
                 <File Id="fil350546A008B6EC9539C604E01722D214" KeyPath="yes" Source="$(var.ProjectTargetDir)\Docker.DotNet.dll" />
@@ -346,20 +367,27 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="Binaries">
+            <ComponentRef Id="cmp62A610FDDE92CF51D05322BEF0E226B2" />
             <ComponentRef Id="cmp8599C26B8F7F3AAE3A2041BBB8329755" />
             <ComponentRef Id="cmp20DFA0E67410BF8DAB39C533FD35A011" />
             <ComponentRef Id="cmp6CC71EC47652442A8133A36AA149FBE5" />
             <ComponentRef Id="cmp7D5FB7BF1928C8D3743998EE110459EC" />
+            <ComponentRef Id="cmpF1C4C53EA0805BB2B903A636B65F49AA" />
             <ComponentRef Id="cmp42F5F7831F817E65D9C7C3E02FD3E606" />
             <ComponentRef Id="cmpD404ECD0606D6C78E651997983B0B8D9" />
+            <ComponentRef Id="cmpF133D77D2CAFE7B90B907C59583EC1F9" />
             <ComponentRef Id="cmp1730D9B3F92E0F0EECCDE81F1C9301B2" />
             <ComponentRef Id="cmp24464A760A473A808BD81B78D01A447A" />
             <ComponentRef Id="cmp51EFF24375D194C8E96814230C15BB6B" />
             <ComponentRef Id="cmpB028B034854F4E7C314B4C09F4E89822" />
             <ComponentRef Id="cmp29FED9FA84F1E96872EBF00592E4FE90" />
             <ComponentRef Id="cmp7C8E5651F0BA72DAEBC3D0D2D7A1EAFF" />
+            <ComponentRef Id="cmp91D502EB751C68D3B5A6A00371B2B056" />
+            <ComponentRef Id="cmpA03795AA7CC53235E5E40BA1F1B80673" />
             <ComponentRef Id="cmp154E1B3F848D83A8739386918095E78C" />
             <ComponentRef Id="cmp765457A6CFBE11F8B7F5817F033848F9" />
+            <ComponentRef Id="cmp1F7C3280EA18137586BAFBF88C1E4608" />
+            <ComponentRef Id="cmpC895D32380969B56103A03B07027B261" />
             <ComponentRef Id="cmp66C40B7E58E4A434BE0E676699DA1577" />
             <ComponentRef Id="cmpC089979D7EDD0520871FCF59E4512F6A" />
             <ComponentRef Id="cmp2D22C362F8F0B3B68D8A335DB9874738" />
