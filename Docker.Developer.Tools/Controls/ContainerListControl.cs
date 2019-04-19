@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit;
 using Docker.Developer.Tools.GridControlState;
 using Docker.DotNet;
 using Docker.DotNet.Models;
@@ -16,6 +20,7 @@ namespace Docker.Developer.Tools.Controls
   {
     private DockerClient _dockerClient;
     private ViewStateToken _containerViewToken;
+    private CancellationTokenSource _containerLogsTokenSource;
 
     public ContainerListControl()
     {
@@ -105,9 +110,11 @@ namespace Docker.Developer.Tools.Controls
       UpdateDetails();
     }
 
-    private void UpdateDetails()
+    private async void UpdateDetails()
     {
       var row = gridViewContainerList.GetFocusedRow() as ContainerListResponse;
+      //UpdateLogs(row);
+
       textContainerId.Text = row != null ? row.ID : string.Empty;
       var containerName = row != null ? row.Names.FirstOrDefault() : string.Empty;
       textContainerName.Text = containerName.StartsWith("/") ? containerName.Substring(1) : containerName;
@@ -133,6 +140,45 @@ namespace Docker.Developer.Tools.Controls
         gridLabels.DataSource = row?.Labels;
 
       UpdateButtons();
+    }
+
+    private async void UpdateLogs(ContainerListResponse row)
+    {
+      // Cancel current token.
+      if(_containerLogsTokenSource != null && !_containerLogsTokenSource.IsCancellationRequested) _containerLogsTokenSource.Cancel();
+      if (row != null)
+      {
+        _containerLogsTokenSource = new CancellationTokenSource(100);
+        var token = _containerLogsTokenSource.Token;
+        token.Register(() => _containerLogsTokenSource = null);
+        var logString = string.Empty;
+        try
+        {
+          var stream = await _dockerClient.Containers.GetContainerLogsAsync(row.ID, new ContainerLogsParameters()
+          {
+            //Follow = true,
+            ShowStderr = true,
+            ShowStdout = true,
+            Timestamps = false,
+          }, token);
+
+          // TODO: Resulting string cannot be parsed by text controls - or any controls it seems.
+          // A way to parse it must be found for this to work.
+          logString = new StreamReader(stream).ReadToEnd();
+        }
+        catch(OperationCanceledException)
+        {
+          logString = string.Empty;
+        }
+        finally
+        {
+          memoLogsViewer.EditValue = logString;
+        }
+      }
+      else
+      {
+        memoLogsViewer.Text = string.Empty;
+      }
     }
 
     private void UpdateButtons()

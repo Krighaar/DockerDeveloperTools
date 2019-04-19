@@ -25,7 +25,11 @@ namespace Docker.Developer.Tools
 
       RibbonTabChanging(ribbonPageContainers);
 
+#if !DEBUG
+      // Since version is set by the CD build the actual version is never updated in the files.
+      // That means that AutoUpdater will always trigger a new version. Therefore we disable it in debug mode to avoid seeing it on startup.
       AutoUpdater.Start("http://docker-developer-tools.net/UpdateManifest.xml");
+#endif
     }
 
     private async void FormMain_Load(object sender, EventArgs e)
