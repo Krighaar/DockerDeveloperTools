@@ -4,7 +4,7 @@ This tool is primarily intended to be used when developing Docker images using D
 It tries to combine as many different work processes as possible into one tool.
 Some of the things that would normally require one or more commands in Powershell/Command prompt ca be done with a single click in the application.
 
-[Downloads](http://docker-developer-tools.net/latest.php)
+[Latest release](https://github.com/Krm1t/DockerDeveloperTools/releases/latest)
 
 ### Intro
 My background for starting this app is that at my workplace we recently started working with Docker.
