@@ -141,6 +141,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\AlertManager.cs" />
+    <Compile Include="Helpers\CustomAlertInfo.cs" />
+    <Compile Include="Helpers\TaskbarHelper.cs" />
+    <Compile Include="Helpers\TaskbarLocation.cs" />
     <Compile Include="ContainerStatus.cs" />
     <Compile Include="Controls\ContainerListControl.cs">
       <SubType>UserControl</SubType>
@@ -154,6 +158,12 @@
     </Compile>
     <Compile Include="Controls\ImagesListControl.Designer.cs">
       <DependentUpon>ImagesListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NetworkListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NetworkListControl.Designer.cs">
+      <DependentUpon>NetworkListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -175,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImagesListControl.resx">
       <DependentUpon>ImagesListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NetworkListControl.resx">
+      <DependentUpon>NetworkListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -225,6 +238,7 @@
     <Content Include="Resources\ContainerRemoving.svg" />
     <Content Include="Resources\ContainerRestarting.svg" />
     <Content Include="Resources\ContainerRunning.svg" />
+    <Content Include="Resources\DeleteNetwork.svg" />
     <Content Include="Resources\ImageRemove.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

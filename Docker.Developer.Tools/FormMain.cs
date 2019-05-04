@@ -1,12 +1,9 @@
-﻿using AutoUpdaterDotNET;
+﻿using System;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using Docker.Developer.Tools.Controls;
 using Docker.DotNet;
-using Docker.DotNet.Models;
-using System;
-using System.Threading.Tasks;
 
 namespace Docker.Developer.Tools
 {
@@ -22,37 +19,22 @@ namespace Docker.Developer.Tools
 
       containerListControl.Initialize(_dockerClient);
       imagesListControl.Initialize(_dockerClient);
-
+      networkListControl.Initialize(_dockerClient);
       RibbonTabChanging(ribbonPageContainers);
-
-      AutoUpdater.Start("http://docker-developer-tools.net/UpdateManifest.xml");
+#if !DEBUG
+      AutoUpdaterDotNET.AutoUpdater.Start("http://docker-developer-tools.net/UpdateManifest.xml");
+#endif
     }
 
-    private async void FormMain_Load(object sender, EventArgs e)
+    protected override void OnLoad(EventArgs e)
     {
+      base.OnLoad(e);
       // Do not show TabHeaders in runtime.
       if (!DesignMode) tabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-
-      await LoadNetworks();
-    }
-
-    private async Task LoadNetworks()
-    {
-      gridViewNetworks.ShowLoadingPanel();
-      gridNetworks.DataSource = await _dockerClient.Networks.ListNetworksAsync(new NetworksListParameters());
-
-      gridViewNetworks.HideLoadingPanel();
     }
 
     private void ribbonControl_SelectedPageChanging(object sender, RibbonPageChangingEventArgs e)
     {
-      // Temp networks implementation
-      if(e.Page == ribbonPageNetworks)
-      {
-        tabControl.SelectedTabPage = tabPageNetworks;
-        return;
-      }
-
       e.Cancel = RibbonTabChanging(e.Page);
     }
 
@@ -91,8 +73,8 @@ namespace Docker.Developer.Tools
         return tabPageContainers;
       else if (ribbonPage == ribbonPageImages)
         return tabPageImages;
-      //else if (ribbonPage == ribbonPageNetworks)
-      //  return tabPageNetworks;
+      else if (ribbonPage == ribbonPageNetworks)
+        return tabPageNetworks;
 
       throw new NotImplementedException($"RibbonPage \"{ribbonPage.Name}\" is not implemented!");
     }
@@ -103,6 +85,8 @@ namespace Docker.Developer.Tools
         return containerListControl;
       else if (tabPage == tabPageImages)
         return imagesListControl;
+      else if (tabPage == tabPageNetworks)
+        return networkListControl;
 
       throw new NotImplementedException($"TabPage \"{tabPage.Name}\" is not implemented!");
     }

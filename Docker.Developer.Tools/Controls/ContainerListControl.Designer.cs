@@ -43,7 +43,7 @@
       this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
       this.svgImageCollection = new DevExpress.Utils.SvgImageCollection(this.components);
       this.repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
-      this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+      this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
       this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
       this.gridLabels = new DevExpress.XtraGrid.GridControl();
       this.gridViewLabels = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -137,8 +137,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-      this.splitContainerControl1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
+      this.splitContainerControl.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
       this.layoutControl1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridLabels)).BeginInit();
@@ -344,19 +344,19 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
       this.repositoryItemImageEdit1.Name = "repositoryItemImageEdit1";
       // 
-      // splitContainerControl1
+      // splitContainerControl
       // 
-      this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainerControl1.Location = new System.Drawing.Point(0, 139);
-      this.splitContainerControl1.Name = "splitContainerControl1";
-      this.splitContainerControl1.Panel1.Controls.Add(this.gridContainerList);
-      this.splitContainerControl1.Panel1.MinSize = 300;
-      this.splitContainerControl1.Panel1.Text = "Panel1";
-      this.splitContainerControl1.Panel2.Controls.Add(this.layoutControl1);
-      this.splitContainerControl1.Panel2.Text = "Panel2";
-      this.splitContainerControl1.Size = new System.Drawing.Size(1200, 661);
-      this.splitContainerControl1.SplitterPosition = 332;
-      this.splitContainerControl1.TabIndex = 3;
+      this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splitContainerControl.Location = new System.Drawing.Point(0, 139);
+      this.splitContainerControl.Name = "splitContainerControl";
+      this.splitContainerControl.Panel1.Controls.Add(this.gridContainerList);
+      this.splitContainerControl.Panel1.MinSize = 300;
+      this.splitContainerControl.Panel1.Text = "Panel1";
+      this.splitContainerControl.Panel2.Controls.Add(this.layoutControl1);
+      this.splitContainerControl.Panel2.Text = "Panel2";
+      this.splitContainerControl.Size = new System.Drawing.Size(1200, 661);
+      this.splitContainerControl.SplitterPosition = 332;
+      this.splitContainerControl.TabIndex = 3;
       // 
       // layoutControl1
       // 
@@ -1036,7 +1036,7 @@
       // 
       // timer
       // 
-      this.timer.Interval = 5000;
+      this.timer.Interval = 2000;
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
       // 
       // ribbonControl
@@ -1230,7 +1230,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.splitContainerControl1);
+      this.Controls.Add(this.splitContainerControl);
       this.Controls.Add(this.ribbonControl);
       this.Name = "ContainerListControl";
       this.Size = new System.Drawing.Size(1200, 800);
@@ -1240,8 +1240,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-      this.splitContainerControl1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
+      this.splitContainerControl.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
       this.layoutControl1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.gridLabels)).EndInit();
@@ -1289,7 +1289,7 @@
     #endregion
 
     private DevExpress.XtraGrid.GridControl gridContainerList;
-    private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+    private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
     private DevExpress.XtraLayout.LayoutControl layoutControl1;
     private DevExpress.XtraLayout.LayoutControlGroup Root;
     private DevExpress.Data.VirtualServerModeSource virtualServerModeSource;

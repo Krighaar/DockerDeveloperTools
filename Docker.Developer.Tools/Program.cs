@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
+using Docker.Developer.Tools.Helpers;
 
 namespace Docker.Developer.Tools
 {
@@ -20,7 +21,10 @@ namespace Docker.Developer.Tools
 
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new MainForm());
+
+      var form = new MainForm();
+      AlertManager.Initialze(form);
+      Application.Run(form);
     }
   }
 }

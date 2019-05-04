@@ -1,0 +1,28 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="-2 -4 32 32" xmlns="http://www.w3.org/2000/svg">
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Router">
+      <path d="M29, 16L24, 16L24, 12L22, 12L22, 16L3, 16C2.4, 16 2, 16.5 2, 17L2, 27C2, 27.5 2.4, 28 3, 28L29, 28C29.6, 28 30, 27.5 30, 27L30, 17C30, 16.5 29.6, 16 29, 16zM8, 24C6.9, 24 6, 23.1 6, 22C6, 20.9 6.9, 20 8, 20C9.1, 20 10, 20.9 10, 22C10, 23.1 9.1, 24 8, 24zM14, 24C12.9, 24 12, 23.1 12, 22C12, 20.9 12.9, 20 14, 20C15.1, 20 16, 20.9 16, 22C16, 23.1 15.1, 24 14, 24z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Router">
+      <path d="M17.5, 7.5C19.1, 6.5 21, 6 23, 6C25, 6 26.9, 6.5 28.5, 7.5L30, 6C28, 4.7 25.6, 4 23, 4C20.4, 4 18, 4.8 16, 6L17.5, 7.5z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -4)">
+    <g id="Router">
+      <path d="M19, 9L20.5, 10.5C21.3, 10.2 22.1, 10 23, 10C23.9, 10 24.7, 10.2 25.5, 10.5L27, 9C25.8, 8.4 24.4, 8 23, 8C21.6, 8 20.2, 8.3 19, 9z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 12)">
+    <g id="Trash">
+      <path d="M4, 15C4, 15.6 4.5, 16 5, 16L11, 16C11.5, 16 12, 15.6 12, 15L12, 6L4, 6L4, 15z" fill="#D11C1C" class="Red" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 12)">
+    <g id="Trash">
+      <path d="M13, 2L10, 2L10, 1C10, 0.4 9.5, 0 9, 0L7, 0C6.5, 0 6, 0.4 6, 1L6, 2L3, 2C2.5, 2 2, 2.4 2, 3L2, 4L7, 4L9, 4L14, 4L14, 3C14, 2.4 13.5, 2 13, 2z" fill="#D11C1C" class="Red" />
+    </g>
+  </g>
+</svg>

@@ -28,9 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-      this.virtualServerModeSourceContainers = new DevExpress.Data.VirtualServerModeSource(this.components);
       this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
       this.ribbonPageContainers = new DevExpress.XtraBars.Ribbon.RibbonPage();
       this.ribbonPageImages = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -42,22 +40,14 @@
       this.tabPageImages = new DevExpress.XtraTab.XtraTabPage();
       this.imagesListControl = new Docker.Developer.Tools.Controls.ImagesListControl();
       this.tabPageNetworks = new DevExpress.XtraTab.XtraTabPage();
-      this.gridNetworks = new DevExpress.XtraGrid.GridControl();
-      this.gridViewNetworks = new DevExpress.XtraGrid.Views.Grid.GridView();
-      ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSourceContainers)).BeginInit();
+      this.networkListControl = new Docker.Developer.Tools.Controls.NetworkListControl();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
       this.tabControl.SuspendLayout();
       this.tabPageContainers.SuspendLayout();
       this.tabPageImages.SuspendLayout();
       this.tabPageNetworks.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.gridNetworks)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.gridViewNetworks)).BeginInit();
       this.SuspendLayout();
-      // 
-      // virtualServerModeSourceContainers
-      // 
-      this.virtualServerModeSourceContainers.RowType = typeof(Docker.DotNet.Models.ImagesListResponse);
       // 
       // ribbonControl
       // 
@@ -145,29 +135,18 @@
       // 
       // tabPageNetworks
       // 
-      this.tabPageNetworks.Controls.Add(this.gridNetworks);
+      this.tabPageNetworks.Controls.Add(this.networkListControl);
       this.tabPageNetworks.Name = "tabPageNetworks";
       this.tabPageNetworks.Size = new System.Drawing.Size(1540, 715);
       this.tabPageNetworks.Text = "Networks";
       // 
-      // gridNetworks
+      // networkListControl
       // 
-      this.gridNetworks.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.gridNetworks.Location = new System.Drawing.Point(0, 0);
-      this.gridNetworks.MainView = this.gridViewNetworks;
-      this.gridNetworks.MenuManager = this.ribbonControl;
-      this.gridNetworks.Name = "gridNetworks";
-      this.gridNetworks.Size = new System.Drawing.Size(1540, 715);
-      this.gridNetworks.TabIndex = 0;
-      this.gridNetworks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewNetworks});
-      // 
-      // gridViewNetworks
-      // 
-      this.gridViewNetworks.GridControl = this.gridNetworks;
-      this.gridViewNetworks.Name = "gridViewNetworks";
-      this.gridViewNetworks.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDownFocused;
-      this.gridViewNetworks.OptionsBehavior.ReadOnly = true;
+      this.networkListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.networkListControl.Location = new System.Drawing.Point(0, 0);
+      this.networkListControl.Name = "networkListControl";
+      this.networkListControl.Size = new System.Drawing.Size(1540, 715);
+      this.networkListControl.TabIndex = 0;
       // 
       // MainForm
       // 
@@ -180,16 +159,12 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "MainForm";
       this.Text = "Docker developer tools";
-      this.Load += new System.EventHandler(this.FormMain_Load);
-      ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSourceContainers)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
       this.tabControl.ResumeLayout(false);
       this.tabPageContainers.ResumeLayout(false);
       this.tabPageImages.ResumeLayout(false);
       this.tabPageNetworks.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.gridNetworks)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.gridViewNetworks)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -203,14 +178,12 @@
     private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
     private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageContainers;
     private DevExpress.XtraTab.XtraTabPage tabPageNetworks;
-    private DevExpress.XtraGrid.GridControl gridNetworks;
-    private DevExpress.XtraGrid.Views.Grid.GridView gridViewNetworks;
-    private DevExpress.Data.VirtualServerModeSource virtualServerModeSourceContainers;
     private Developer.Tools.Controls.ContainerListControl containerListControl;
     private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
     private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageImages;
     private Controls.ImagesListControl imagesListControl;
     private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageNetworks;
+    private Controls.NetworkListControl networkListControl;
   }
 }
 

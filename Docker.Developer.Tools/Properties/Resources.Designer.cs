@@ -133,6 +133,16 @@ namespace Docker.Developer.Tools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage DeleteNetwork {
+            get {
+                object obj = ResourceManager.GetObject("DeleteNetwork", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage ImageRemove {
             get {
                 object obj = ResourceManager.GetObject("ImageRemove", resourceCulture);

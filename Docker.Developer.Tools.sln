@@ -16,7 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure Pipeline", "Azure Pipeline", "{2E3F495C-77DC-42B4-851E-C406DC2135E3}"
 	ProjectSection(SolutionItems) = preProject
-		Azure Pipeline\latest.php = Azure Pipeline\latest.php
 		Azure Pipeline\UpdateManifest.xml = Azure Pipeline\UpdateManifest.xml
 	EndProjectSection
 EndProject

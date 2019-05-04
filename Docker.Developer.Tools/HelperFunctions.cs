@@ -24,6 +24,12 @@ namespace Docker.Developer.Tools
         return $"{size.ToString(format, CultureInfo.CurrentCulture)} B";
     }
 
+    public static string BooleanToText(bool value)
+    {
+      if (value) return "Yes";
+      else return "No";
+    }
+
     public static Color GetDisabledColor()
     {
       var currentSkin = DevExpress.Skins.CommonSkins.GetSkin(DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveLookAndFeel);
