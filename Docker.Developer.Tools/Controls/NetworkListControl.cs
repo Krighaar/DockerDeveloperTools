@@ -174,6 +174,10 @@ namespace Docker.Developer.Tools.Controls
       }
     }
 
+    #endregion
+
+    #region < Details >
+
     private void gridViewIPAMConfig_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
     {
       var row = e.Row as IPAMConfig;
