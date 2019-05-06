@@ -22,7 +22,7 @@ namespace Docker.Developer.Tools
       networkListControl.Initialize(_dockerClient);
       RibbonTabChanging(ribbonPageContainers);
 #if !DEBUG
-      AutoUpdaterDotNET.AutoUpdater.Start("http://docker-developer-tools.net/UpdateManifest.xml");
+      AutoUpdaterDotNET.AutoUpdater.Start("https://github.com/Krm1t/DockerDeveloperTools/releases/latest/download/updatemanifest.xml");
 #endif
     }
 

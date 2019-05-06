@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
-using Docker.Developer.Tools.GridControlState;
 using Docker.DotNet;
 using Docker.DotNet.Models;
 
@@ -15,7 +14,6 @@ namespace Docker.Developer.Tools.Controls
   public partial class ContainerListControl : XtraUserControl, IControlSupportsRibbonMerge
   {
     private DockerClient _dockerClient;
-    private ViewStateToken _containerViewToken;
 
     public ContainerListControl()
     {
@@ -24,9 +22,17 @@ namespace Docker.Developer.Tools.Controls
       UpdateButtons();
     }
 
+    protected override void OnLoad(EventArgs e)
+    {
+      base.OnLoad(e);
+      if (!DesignMode && _dockerClient == null)
+        throw new InvalidOperationException($"Cannot load control when {nameof(_dockerClient)} has not been initialized!");
+    }
+
     public void Initialize(DockerClient dockerClient)
     {
-      _dockerClient = dockerClient;
+      _dockerClient = dockerClient ?? throw new ArgumentNullException(nameof(dockerClient));
+      timer.Start();
     }
 
     public void MergeRibbon(RibbonControl parent)
@@ -40,36 +46,54 @@ namespace Docker.Developer.Tools.Controls
       // No status bar to merge.
     }
 
-    private void timer_Tick(object sender, EventArgs e)
+    private async void timer_Tick(object sender, EventArgs e)
     {
-      _containerViewToken = gridControlState.StoreViewState(gridViewContainerList);
-      virtualServerModeSource.Refresh();
+      timer.Stop();
+      try
+      {
+        gridViewContainerList.ShowLoadingPanel();
+        await RefreshData();
+      }
+      finally
+      {
+        gridViewContainerList.HideLoadingPanel();
+        timer.Start();
+      }
+    }
+
+    /// <summary> 
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+      if (disposing && (components != null))
+      {
+        components.Dispose();
+      }
+
+      if (disposing && timer != null)
+        timer.Tick -= timer_Tick;
+
+      if (disposing && _dockerClient != null)
+      {
+        _dockerClient.Dispose();
+        _dockerClient = null;
+      }
+
+      base.Dispose(disposing);
     }
 
     #region < GridViewList >
 
-    private void virtualServerModeSource_ConfigurationChanged(object sender, DevExpress.Data.VirtualServerModeRowsEventArgs e)
+    private async Task RefreshData()
     {
-      var listContainerParameters = new ContainersListParameters() { All = true };
-      e.RowsTask = _dockerClient.Containers.ListContainersAsync(listContainerParameters, e.CancellationToken).ContinueWith(result =>
+      using (var token = gridControlState.StoreViewState(gridViewContainerList))
       {
-        return new DevExpress.Data.VirtualServerModeRowsTaskResult(result.Result.ToList(), false, null);
-      });
-    }
-
-    private void gridViewContainerList_AsyncCompleted(object sender, EventArgs e)
-    {
-      // Store token in local variable before nulling the member.
-      // See gridViewContainerList_FocusedRowChanged for reason.
-      var token = _containerViewToken;
-      _containerViewToken = null;
-      token?.RestoreState();
-
-      barButtonItemStopAllContainers.Enabled = gridViewContainerList.DataRowCount > 0;
-      barButtonItemDeleteAllContainersMenu.Enabled = gridViewContainerList.DataRowCount > 0;
-      // Manual trigger UpdateDetails since FocusedRowChanged wont trigger in this case.
-      if (gridViewContainerList.FocusedRowHandle == 0) UpdateDetails();
-      if (!timer.Enabled) timer.Start(); // Start refresh timer if not already started.
+        var listContainerParameters = new ContainersListParameters() { All = true };
+        var result = await _dockerClient.Containers.ListContainersAsync(listContainerParameters);
+        gridContainerList.DataSource = result.ToList();
+      }
     }
 
     private void gridViewContainerList_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -99,9 +123,6 @@ namespace Docker.Developer.Tools.Controls
 
     private void gridViewContainerList_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
     {
-      // If state is stored then this FocusedRowChanged was triggered by the data source being updated.
-      // We ignore this as another FocusedRowChanged event will be triggered when state is restored.
-      if (_containerViewToken != null) return;
       UpdateDetails();
     }
 

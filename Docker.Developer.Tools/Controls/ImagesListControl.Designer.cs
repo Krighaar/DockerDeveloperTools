@@ -7,19 +7,6 @@
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
-    {
-      if (disposing && (components != null))
-      {
-        components.Dispose();
-      }
-      base.Dispose(disposing);
-    }
-
     #region Component Designer generated code
 
     /// <summary> 
@@ -31,7 +18,6 @@
       this.components = new System.ComponentModel.Container();
       this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
       this.gridImageList = new DevExpress.XtraGrid.GridControl();
-      this.virtualServerModeSource = new DevExpress.Data.VirtualServerModeSource(this.components);
       this.gridViewImageList = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
       this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
       this.colRepositoryName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -80,7 +66,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
       this.splitContainerControl1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridImageList)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewImageList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -129,7 +114,6 @@
       // 
       // gridImageList
       // 
-      this.gridImageList.DataSource = this.virtualServerModeSource;
       this.gridImageList.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridImageList.Location = new System.Drawing.Point(0, 0);
       this.gridImageList.MainView = this.gridViewImageList;
@@ -139,11 +123,6 @@
       this.gridImageList.TabIndex = 0;
       this.gridImageList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewImageList});
-      // 
-      // virtualServerModeSource
-      // 
-      this.virtualServerModeSource.RowType = typeof(Docker.DotNet.Models.ImagesListResponse);
-      this.virtualServerModeSource.ConfigurationChanged += new System.EventHandler<DevExpress.Data.VirtualServerModeRowsEventArgs>(this.virtualServerModeSource_ConfigurationChanged);
       // 
       // gridViewImageList
       // 
@@ -166,10 +145,11 @@
       this.gridViewImageList.OptionsView.ShowIndicator = false;
       this.gridViewImageList.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.False;
       this.gridViewImageList.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Panel;
+      this.gridViewImageList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colRepositoryName, DevExpress.Data.ColumnSortOrder.Ascending)});
       this.gridViewImageList.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewImageList_CustomDrawCell);
       this.gridViewImageList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewImageList_FocusedRowChanged);
       this.gridViewImageList.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridViewImageList_CustomUnboundColumnData);
-      this.gridViewImageList.AsyncCompleted += new System.EventHandler(this.gridViewImageList_AsyncCompleted);
       this.gridViewImageList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewImageList_KeyDown);
       // 
       // gridBand1
@@ -629,7 +609,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
       this.splitContainerControl1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.gridImageList)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewImageList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -675,7 +654,6 @@
     private DevExpress.XtraLayout.LayoutControl layoutControl1;
     private DevExpress.XtraLayout.LayoutControlGroup Root;
     private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView gridViewImageList;
-    private DevExpress.Data.VirtualServerModeSource virtualServerModeSource;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colIDShort;
     private System.Windows.Forms.Timer timer;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colRepositoryName;

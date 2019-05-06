@@ -7,18 +7,6 @@
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
-    {
-      if (disposing && (components != null))
-      {
-        components.Dispose();
-      }
-      base.Dispose(disposing);
-    }
 
     #region Component Designer generated code
 
@@ -31,7 +19,6 @@
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContainerListControl));
       this.gridContainerList = new DevExpress.XtraGrid.GridControl();
-      this.virtualServerModeSource = new DevExpress.Data.VirtualServerModeSource(this.components);
       this.gridViewContainerList = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
       this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
       this.colName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -132,7 +119,6 @@
       this.ribbonPageGroupManageContainer = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
       this.gridControlState = new Docker.Developer.Tools.GridControlState.GridControlState(this.components);
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection)).BeginInit();
@@ -183,7 +169,6 @@
       // gridContainerList
       // 
       this.gridContainerList.AllowRestoreSelectionAndFocusedRow = DevExpress.Utils.DefaultBoolean.False;
-      this.gridContainerList.DataSource = this.virtualServerModeSource;
       this.gridContainerList.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridContainerList.Location = new System.Drawing.Point(0, 0);
       this.gridContainerList.MainView = this.gridViewContainerList;
@@ -195,11 +180,6 @@
       this.gridContainerList.TabIndex = 0;
       this.gridContainerList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewContainerList});
-      // 
-      // virtualServerModeSource
-      // 
-      this.virtualServerModeSource.RowType = typeof(Docker.DotNet.Models.ContainerListResponse);
-      this.virtualServerModeSource.ConfigurationChanged += new System.EventHandler<DevExpress.Data.VirtualServerModeRowsEventArgs>(this.virtualServerModeSource_ConfigurationChanged);
       // 
       // gridViewContainerList
       // 
@@ -231,7 +211,6 @@
       this.gridViewContainerList.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewContainerList_CustomDrawCell);
       this.gridViewContainerList.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewContainerList_FocusedRowChanged);
       this.gridViewContainerList.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridViewContainerList_CustomUnboundColumnData);
-      this.gridViewContainerList.AsyncCompleted += new System.EventHandler(this.gridViewContainerList_AsyncCompleted);
       this.gridViewContainerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridViewContainerList_KeyDown);
       // 
       // gridBand1
@@ -1235,7 +1214,6 @@
       this.Name = "ContainerListControl";
       this.Size = new System.Drawing.Size(1200, 800);
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection)).EndInit();
@@ -1292,7 +1270,6 @@
     private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
     private DevExpress.XtraLayout.LayoutControl layoutControl1;
     private DevExpress.XtraLayout.LayoutControlGroup Root;
-    private DevExpress.Data.VirtualServerModeSource virtualServerModeSource;
     private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView gridViewContainerList;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colName;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colID;
