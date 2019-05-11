@@ -16,10 +16,14 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetworkListControl));
       this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
       this.barButtonDeleteNetwork = new DevExpress.XtraBars.BarButtonItem();
+      this.barButtonPruneNetworks = new DevExpress.XtraBars.BarButtonItem();
+      this.barStaticItemDockerConnectionMissing = new DevExpress.XtraBars.BarStaticItem();
       this.ribbonPageNetworks = new DevExpress.XtraBars.Ribbon.RibbonPage();
       this.ribbonPageGroupNetworks = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+      this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
       this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
       this.gridNetworkList = new DevExpress.XtraGrid.GridControl();
       this.gridViewNetworkList = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -72,8 +76,7 @@
       this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
       this.gridControlState = new Docker.Developer.Tools.GridControlState.GridControlState(this.components);
       this.timer = new System.Windows.Forms.Timer(this.components);
-      this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-      this.barButtonPruneNetworks = new DevExpress.XtraBars.BarButtonItem();
+      this.panelControl = new DevExpress.XtraEditors.PanelControl();
       ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
       this.splitContainerControl.SuspendLayout();
@@ -114,8 +117,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-      this.panelControl1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.panelControl)).BeginInit();
+      this.panelControl.SuspendLayout();
       this.SuspendLayout();
       // 
       // ribbonControl
@@ -124,13 +127,15 @@
       this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
             this.barButtonDeleteNetwork,
-            this.barButtonPruneNetworks});
+            this.barButtonPruneNetworks,
+            this.barStaticItemDockerConnectionMissing});
       this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-      this.ribbonControl.MaxItemId = 4;
+      this.ribbonControl.MaxItemId = 5;
       this.ribbonControl.Name = "ribbonControl";
       this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageNetworks});
       this.ribbonControl.Size = new System.Drawing.Size(1200, 139);
+      this.ribbonControl.StatusBar = this.ribbonStatusBar;
       // 
       // barButtonDeleteNetwork
       // 
@@ -139,6 +144,22 @@
       this.barButtonDeleteNetwork.ImageOptions.SvgImage = global::Docker.Developer.Tools.Properties.Resources.DeleteNetwork;
       this.barButtonDeleteNetwork.Name = "barButtonDeleteNetwork";
       this.barButtonDeleteNetwork.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDeleteNetwork_ItemClick);
+      // 
+      // barButtonPruneNetworks
+      // 
+      this.barButtonPruneNetworks.Caption = "Prune networks";
+      this.barButtonPruneNetworks.Id = 3;
+      this.barButtonPruneNetworks.ImageOptions.SvgImage = global::Docker.Developer.Tools.Properties.Resources.DeleteNetwork;
+      this.barButtonPruneNetworks.Name = "barButtonPruneNetworks";
+      this.barButtonPruneNetworks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPruneNetworks_ItemClick);
+      // 
+      // barStaticItemDockerConnectionMissing
+      // 
+      this.barStaticItemDockerConnectionMissing.Caption = "Could not connect to docker!";
+      this.barStaticItemDockerConnectionMissing.Id = 4;
+      this.barStaticItemDockerConnectionMissing.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barStaticItemDockerConnectionMissing.ImageOptions.SvgImage")));
+      this.barStaticItemDockerConnectionMissing.Name = "barStaticItemDockerConnectionMissing";
+      this.barStaticItemDockerConnectionMissing.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
       // 
       // ribbonPageNetworks
       // 
@@ -155,6 +176,14 @@
       this.ribbonPageGroupNetworks.ShowCaptionButton = false;
       this.ribbonPageGroupNetworks.Text = "Networks";
       // 
+      // ribbonStatusBar
+      // 
+      this.ribbonStatusBar.ItemLinks.Add(this.barStaticItemDockerConnectionMissing);
+      this.ribbonStatusBar.Location = new System.Drawing.Point(0, 775);
+      this.ribbonStatusBar.Name = "ribbonStatusBar";
+      this.ribbonStatusBar.Ribbon = this.ribbonControl;
+      this.ribbonStatusBar.Size = new System.Drawing.Size(1200, 25);
+      // 
       // splitContainerControl
       // 
       this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -164,7 +193,7 @@
       this.splitContainerControl.Panel1.Text = "Panel1";
       this.splitContainerControl.Panel2.Controls.Add(this.layoutControl1);
       this.splitContainerControl.Panel2.Text = "Panel2";
-      this.splitContainerControl.Size = new System.Drawing.Size(1196, 657);
+      this.splitContainerControl.Size = new System.Drawing.Size(1196, 632);
       this.splitContainerControl.SplitterPosition = 332;
       this.splitContainerControl.TabIndex = 1;
       // 
@@ -175,7 +204,7 @@
       this.gridNetworkList.MainView = this.gridViewNetworkList;
       this.gridNetworkList.MenuManager = this.ribbonControl;
       this.gridNetworkList.Name = "gridNetworkList";
-      this.gridNetworkList.Size = new System.Drawing.Size(332, 657);
+      this.gridNetworkList.Size = new System.Drawing.Size(332, 632);
       this.gridNetworkList.TabIndex = 0;
       this.gridNetworkList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNetworkList});
@@ -258,7 +287,7 @@
       this.layoutControl1.Name = "layoutControl1";
       this.layoutControl1.OptionsView.UseDefaultDragAndDropRendering = false;
       this.layoutControl1.Root = this.Root;
-      this.layoutControl1.Size = new System.Drawing.Size(858, 657);
+      this.layoutControl1.Size = new System.Drawing.Size(858, 632);
       this.layoutControl1.TabIndex = 0;
       this.layoutControl1.Text = "layoutControl1";
       // 
@@ -268,7 +297,7 @@
       this.gridLabels.MainView = this.gridViewLabels;
       this.gridLabels.MenuManager = this.ribbonControl;
       this.gridLabels.Name = "gridLabels";
-      this.gridLabels.Size = new System.Drawing.Size(415, 230);
+      this.gridLabels.Size = new System.Drawing.Size(415, 216);
       this.gridLabels.TabIndex = 5;
       this.gridLabels.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewLabels});
@@ -311,7 +340,7 @@
       this.gridOptions.MainView = this.gridViewOptions;
       this.gridOptions.MenuManager = this.ribbonControl;
       this.gridOptions.Name = "gridOptions";
-      this.gridOptions.Size = new System.Drawing.Size(415, 230);
+      this.gridOptions.Size = new System.Drawing.Size(415, 216);
       this.gridOptions.TabIndex = 12;
       this.gridOptions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOptions});
@@ -350,11 +379,11 @@
       // 
       // gridIPAMOptions
       // 
-      this.gridIPAMOptions.Location = new System.Drawing.Point(431, 429);
+      this.gridIPAMOptions.Location = new System.Drawing.Point(431, 415);
       this.gridIPAMOptions.MainView = this.gridViewIPAMOptions;
       this.gridIPAMOptions.MenuManager = this.ribbonControl;
       this.gridIPAMOptions.Name = "gridIPAMOptions";
-      this.gridIPAMOptions.Size = new System.Drawing.Size(403, 204);
+      this.gridIPAMOptions.Size = new System.Drawing.Size(403, 193);
       this.gridIPAMOptions.TabIndex = 11;
       this.gridIPAMOptions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIPAMOptions});
@@ -393,11 +422,11 @@
       // 
       // gridIPAMConfig
       // 
-      this.gridIPAMConfig.Location = new System.Drawing.Point(24, 429);
+      this.gridIPAMConfig.Location = new System.Drawing.Point(24, 415);
       this.gridIPAMConfig.MainView = this.gridViewIPAMConfig;
       this.gridIPAMConfig.MenuManager = this.ribbonControl;
       this.gridIPAMConfig.Name = "gridIPAMConfig";
-      this.gridIPAMConfig.Size = new System.Drawing.Size(403, 204);
+      this.gridIPAMConfig.Size = new System.Drawing.Size(403, 193);
       this.gridIPAMConfig.TabIndex = 10;
       this.gridIPAMConfig.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewIPAMConfig});
@@ -452,7 +481,7 @@
       // 
       // textIPAMConfig
       // 
-      this.textIPAMConfig.Location = new System.Drawing.Point(92, 389);
+      this.textIPAMConfig.Location = new System.Drawing.Point(92, 375);
       this.textIPAMConfig.MenuManager = this.ribbonControl;
       this.textIPAMConfig.Name = "textIPAMConfig";
       this.textIPAMConfig.Properties.ReadOnly = true;
@@ -557,7 +586,7 @@
             this.layoutControlItem12,
             this.layoutControlItem13});
       this.Root.Name = "Root";
-      this.Root.Size = new System.Drawing.Size(858, 657);
+      this.Root.Size = new System.Drawing.Size(858, 632);
       this.Root.TextVisible = false;
       // 
       // layoutControlItem1
@@ -603,9 +632,9 @@
             this.layoutControlItem10,
             this.layoutControlItem11,
             this.emptySpaceItem2});
-      this.layoutControlGroup1.Location = new System.Drawing.Point(0, 346);
+      this.layoutControlGroup1.Location = new System.Drawing.Point(0, 332);
       this.layoutControlGroup1.Name = "layoutControlGroup1";
-      this.layoutControlGroup1.Size = new System.Drawing.Size(838, 291);
+      this.layoutControlGroup1.Size = new System.Drawing.Size(838, 280);
       this.layoutControlGroup1.Text = "IP Address Management";
       // 
       // layoutControlItem9
@@ -622,7 +651,7 @@
       this.layoutControlItem10.Control = this.gridIPAMConfig;
       this.layoutControlItem10.Location = new System.Drawing.Point(0, 24);
       this.layoutControlItem10.Name = "layoutControlItem10";
-      this.layoutControlItem10.Size = new System.Drawing.Size(407, 224);
+      this.layoutControlItem10.Size = new System.Drawing.Size(407, 213);
       this.layoutControlItem10.Text = "Configuration";
       this.layoutControlItem10.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem10.TextSize = new System.Drawing.Size(65, 13);
@@ -632,7 +661,7 @@
       this.layoutControlItem11.Control = this.gridIPAMOptions;
       this.layoutControlItem11.Location = new System.Drawing.Point(407, 24);
       this.layoutControlItem11.Name = "layoutControlItem11";
-      this.layoutControlItem11.Size = new System.Drawing.Size(407, 224);
+      this.layoutControlItem11.Size = new System.Drawing.Size(407, 213);
       this.layoutControlItem11.Text = "Options";
       this.layoutControlItem11.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem11.TextSize = new System.Drawing.Size(65, 13);
@@ -686,7 +715,7 @@
       this.layoutControlItem12.Control = this.gridOptions;
       this.layoutControlItem12.Location = new System.Drawing.Point(0, 96);
       this.layoutControlItem12.Name = "layoutControlItem12";
-      this.layoutControlItem12.Size = new System.Drawing.Size(419, 250);
+      this.layoutControlItem12.Size = new System.Drawing.Size(419, 236);
       this.layoutControlItem12.Text = "Options";
       this.layoutControlItem12.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem12.TextSize = new System.Drawing.Size(65, 13);
@@ -696,7 +725,7 @@
       this.layoutControlItem13.Control = this.gridLabels;
       this.layoutControlItem13.Location = new System.Drawing.Point(419, 96);
       this.layoutControlItem13.Name = "layoutControlItem13";
-      this.layoutControlItem13.Size = new System.Drawing.Size(419, 250);
+      this.layoutControlItem13.Size = new System.Drawing.Size(419, 236);
       this.layoutControlItem13.Text = "Labels";
       this.layoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem13.TextSize = new System.Drawing.Size(65, 13);
@@ -706,28 +735,21 @@
       this.timer.Interval = 2000;
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
       // 
-      // panelControl1
+      // panelControl
       // 
-      this.panelControl1.Controls.Add(this.splitContainerControl);
-      this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panelControl1.Location = new System.Drawing.Point(0, 139);
-      this.panelControl1.Name = "panelControl1";
-      this.panelControl1.Size = new System.Drawing.Size(1200, 661);
-      this.panelControl1.TabIndex = 3;
-      // 
-      // barButtonPruneNetworks
-      // 
-      this.barButtonPruneNetworks.Caption = "Prune networks";
-      this.barButtonPruneNetworks.Id = 3;
-      this.barButtonPruneNetworks.ImageOptions.SvgImage = global::Docker.Developer.Tools.Properties.Resources.DeleteNetwork;
-      this.barButtonPruneNetworks.Name = "barButtonPruneNetworks";
-      this.barButtonPruneNetworks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPruneNetworks_ItemClick);
+      this.panelControl.Controls.Add(this.splitContainerControl);
+      this.panelControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panelControl.Location = new System.Drawing.Point(0, 139);
+      this.panelControl.Name = "panelControl";
+      this.panelControl.Size = new System.Drawing.Size(1200, 636);
+      this.panelControl.TabIndex = 3;
       // 
       // NetworkListControl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.panelControl1);
+      this.Controls.Add(this.panelControl);
+      this.Controls.Add(this.ribbonStatusBar);
       this.Controls.Add(this.ribbonControl);
       this.Name = "NetworkListControl";
       this.Size = new System.Drawing.Size(1200, 800);
@@ -771,8 +793,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-      this.panelControl1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.panelControl)).EndInit();
+      this.panelControl.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -818,7 +840,7 @@
     private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
     private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-    private DevExpress.XtraEditors.PanelControl panelControl1;
+    private DevExpress.XtraEditors.PanelControl panelControl;
     private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
     private DevExpress.XtraGrid.Columns.GridColumn colIPAMId;
     private DevExpress.XtraGrid.Columns.GridColumn colIPAMSubnet;
@@ -838,5 +860,7 @@
     private DevExpress.XtraGrid.Columns.GridColumn colIPAMOptionsValue;
     private DevExpress.XtraBars.BarButtonItem barButtonDeleteNetwork;
     private DevExpress.XtraBars.BarButtonItem barButtonPruneNetworks;
+    private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+    private DevExpress.XtraBars.BarStaticItem barStaticItemDockerConnectionMissing;
   }
 }

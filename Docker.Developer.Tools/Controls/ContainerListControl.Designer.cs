@@ -114,10 +114,13 @@
       this.barButtonItemOpenUrlHttp = new DevExpress.XtraBars.BarButtonItem();
       this.barButtonItemOpenUrlHttps = new DevExpress.XtraBars.BarButtonItem();
       this.barButtonItemOpenMappedFolder = new DevExpress.XtraBars.BarButtonItem();
+      this.barStaticItemDockerConnectionMissing = new DevExpress.XtraBars.BarStaticItem();
       this.ribbonPageContainers = new DevExpress.XtraBars.Ribbon.RibbonPage();
       this.ribbonPageGroupContainers = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
       this.ribbonPageGroupManageContainer = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+      this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
       this.gridControlState = new Docker.Developer.Tools.GridControlState.GridControlState(this.components);
+      this.panelControl = new DevExpress.XtraEditors.PanelControl();
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
@@ -164,6 +167,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteContainer)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteAllContainers)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuOpenUrl)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.panelControl)).BeginInit();
+      this.panelControl.SuspendLayout();
       this.SuspendLayout();
       // 
       // gridContainerList
@@ -176,7 +181,7 @@
       this.gridContainerList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBox1,
             this.repositoryItemImageEdit1});
-      this.gridContainerList.Size = new System.Drawing.Size(332, 661);
+      this.gridContainerList.Size = new System.Drawing.Size(332, 632);
       this.gridContainerList.TabIndex = 0;
       this.gridContainerList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewContainerList});
@@ -326,14 +331,14 @@
       // splitContainerControl
       // 
       this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainerControl.Location = new System.Drawing.Point(0, 139);
+      this.splitContainerControl.Location = new System.Drawing.Point(2, 2);
       this.splitContainerControl.Name = "splitContainerControl";
       this.splitContainerControl.Panel1.Controls.Add(this.gridContainerList);
       this.splitContainerControl.Panel1.MinSize = 300;
       this.splitContainerControl.Panel1.Text = "Panel1";
       this.splitContainerControl.Panel2.Controls.Add(this.layoutControl1);
       this.splitContainerControl.Panel2.Text = "Panel2";
-      this.splitContainerControl.Size = new System.Drawing.Size(1200, 661);
+      this.splitContainerControl.Size = new System.Drawing.Size(1196, 632);
       this.splitContainerControl.SplitterPosition = 332;
       this.splitContainerControl.TabIndex = 3;
       // 
@@ -359,16 +364,16 @@
       this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1112, 285, 650, 706);
       this.layoutControl1.OptionsView.UseDefaultDragAndDropRendering = false;
       this.layoutControl1.Root = this.Root;
-      this.layoutControl1.Size = new System.Drawing.Size(862, 661);
+      this.layoutControl1.Size = new System.Drawing.Size(858, 632);
       this.layoutControl1.TabIndex = 0;
       this.layoutControl1.Text = "layoutControl1";
       // 
       // gridLabels
       // 
-      this.gridLabels.Location = new System.Drawing.Point(454, 384);
+      this.gridLabels.Location = new System.Drawing.Point(452, 370);
       this.gridLabels.MainView = this.gridViewLabels;
       this.gridLabels.Name = "gridLabels";
-      this.gridLabels.Size = new System.Drawing.Size(396, 265);
+      this.gridLabels.Size = new System.Drawing.Size(394, 250);
       this.gridLabels.TabIndex = 19;
       this.gridLabels.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewLabels});
@@ -407,10 +412,10 @@
       // 
       // gridNetworkSettings
       // 
-      this.gridNetworkSettings.Location = new System.Drawing.Point(12, 384);
+      this.gridNetworkSettings.Location = new System.Drawing.Point(12, 370);
       this.gridNetworkSettings.MainView = this.gridViewNetworkSettings;
       this.gridNetworkSettings.Name = "gridNetworkSettings";
-      this.gridNetworkSettings.Size = new System.Drawing.Size(438, 265);
+      this.gridNetworkSettings.Size = new System.Drawing.Size(436, 250);
       this.gridNetworkSettings.TabIndex = 18;
       this.gridNetworkSettings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNetworkSettings});
@@ -609,64 +614,64 @@
       // 
       // textSizeRW
       // 
-      this.textSizeRW.Location = new System.Drawing.Point(538, 60);
+      this.textSizeRW.Location = new System.Drawing.Point(536, 60);
       this.textSizeRW.Name = "textSizeRW";
       this.textSizeRW.Properties.ReadOnly = true;
-      this.textSizeRW.Size = new System.Drawing.Size(112, 20);
+      this.textSizeRW.Size = new System.Drawing.Size(111, 20);
       this.textSizeRW.StyleController = this.layoutControl1;
       this.textSizeRW.TabIndex = 17;
       // 
       // textSizeRootFS
       // 
-      this.textSizeRootFS.Location = new System.Drawing.Point(738, 60);
+      this.textSizeRootFS.Location = new System.Drawing.Point(735, 60);
       this.textSizeRootFS.Name = "textSizeRootFS";
       this.textSizeRootFS.Properties.ReadOnly = true;
-      this.textSizeRootFS.Size = new System.Drawing.Size(112, 20);
+      this.textSizeRootFS.Size = new System.Drawing.Size(111, 20);
       this.textSizeRootFS.StyleController = this.layoutControl1;
       this.textSizeRootFS.TabIndex = 16;
       // 
       // textStatus
       // 
-      this.textStatus.Location = new System.Drawing.Point(738, 12);
+      this.textStatus.Location = new System.Drawing.Point(735, 12);
       this.textStatus.Name = "textStatus";
       this.textStatus.Properties.ReadOnly = true;
-      this.textStatus.Size = new System.Drawing.Size(112, 20);
+      this.textStatus.Size = new System.Drawing.Size(111, 20);
       this.textStatus.StyleController = this.layoutControl1;
       this.textStatus.TabIndex = 15;
       // 
       // textState
       // 
-      this.textState.Location = new System.Drawing.Point(538, 12);
+      this.textState.Location = new System.Drawing.Point(536, 12);
       this.textState.Name = "textState";
       this.textState.Properties.ReadOnly = true;
-      this.textState.Size = new System.Drawing.Size(112, 20);
+      this.textState.Size = new System.Drawing.Size(111, 20);
       this.textState.StyleController = this.layoutControl1;
       this.textState.TabIndex = 14;
       // 
       // textCommand
       // 
-      this.textCommand.Location = new System.Drawing.Point(738, 36);
+      this.textCommand.Location = new System.Drawing.Point(735, 36);
       this.textCommand.Name = "textCommand";
       this.textCommand.Properties.ReadOnly = true;
-      this.textCommand.Size = new System.Drawing.Size(112, 20);
+      this.textCommand.Size = new System.Drawing.Size(111, 20);
       this.textCommand.StyleController = this.layoutControl1;
       this.textCommand.TabIndex = 13;
       // 
       // textCreatedDate
       // 
-      this.textCreatedDate.Location = new System.Drawing.Point(538, 36);
+      this.textCreatedDate.Location = new System.Drawing.Point(536, 36);
       this.textCreatedDate.Name = "textCreatedDate";
       this.textCreatedDate.Properties.ReadOnly = true;
-      this.textCreatedDate.Size = new System.Drawing.Size(112, 20);
+      this.textCreatedDate.Size = new System.Drawing.Size(111, 20);
       this.textCreatedDate.StyleController = this.layoutControl1;
       this.textCreatedDate.TabIndex = 12;
       // 
       // gridPorts
       // 
-      this.gridPorts.Location = new System.Drawing.Point(454, 100);
+      this.gridPorts.Location = new System.Drawing.Point(452, 100);
       this.gridPorts.MainView = this.gridViewPorts;
       this.gridPorts.Name = "gridPorts";
-      this.gridPorts.Size = new System.Drawing.Size(396, 264);
+      this.gridPorts.Size = new System.Drawing.Size(394, 250);
       this.gridPorts.TabIndex = 11;
       this.gridPorts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPorts});
@@ -726,7 +731,7 @@
       this.gridVolumes.Location = new System.Drawing.Point(12, 100);
       this.gridVolumes.MainView = this.gridViewVolumes;
       this.gridVolumes.Name = "gridVolumes";
-      this.gridVolumes.Size = new System.Drawing.Size(438, 264);
+      this.gridVolumes.Size = new System.Drawing.Size(436, 250);
       this.gridVolumes.TabIndex = 10;
       this.gridVolumes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewVolumes});
@@ -829,7 +834,7 @@
       this.textImageId.Location = new System.Drawing.Point(96, 36);
       this.textImageId.Name = "textImageId";
       this.textImageId.Properties.ReadOnly = true;
-      this.textImageId.Size = new System.Drawing.Size(354, 20);
+      this.textImageId.Size = new System.Drawing.Size(352, 20);
       this.textImageId.StyleController = this.layoutControl1;
       this.textImageId.TabIndex = 7;
       // 
@@ -838,16 +843,16 @@
       this.textContainerId.Location = new System.Drawing.Point(96, 12);
       this.textContainerId.Name = "textContainerId";
       this.textContainerId.Properties.ReadOnly = true;
-      this.textContainerId.Size = new System.Drawing.Size(354, 20);
+      this.textContainerId.Size = new System.Drawing.Size(352, 20);
       this.textContainerId.StyleController = this.layoutControl1;
       this.textContainerId.TabIndex = 6;
       // 
       // textImageName
       // 
-      this.textImageName.Location = new System.Drawing.Point(317, 60);
+      this.textImageName.Location = new System.Drawing.Point(316, 60);
       this.textImageName.Name = "textImageName";
       this.textImageName.Properties.ReadOnly = true;
-      this.textImageName.Size = new System.Drawing.Size(133, 20);
+      this.textImageName.Size = new System.Drawing.Size(132, 20);
       this.textImageName.StyleController = this.layoutControl1;
       this.textImageName.TabIndex = 5;
       // 
@@ -856,7 +861,7 @@
       this.textContainerName.Location = new System.Drawing.Point(96, 60);
       this.textContainerName.Name = "textContainerName";
       this.textContainerName.Properties.ReadOnly = true;
-      this.textContainerName.Size = new System.Drawing.Size(133, 20);
+      this.textContainerName.Size = new System.Drawing.Size(132, 20);
       this.textContainerName.StyleController = this.layoutControl1;
       this.textContainerName.TabIndex = 4;
       // 
@@ -880,7 +885,7 @@
             this.layoutControlItem13,
             this.layoutControlItem1});
       this.Root.Name = "Root";
-      this.Root.Size = new System.Drawing.Size(862, 661);
+      this.Root.Size = new System.Drawing.Size(858, 632);
       this.Root.TextVisible = false;
       // 
       // layoutControlItem3
@@ -888,7 +893,7 @@
       this.layoutControlItem3.Control = this.textContainerId;
       this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
       this.layoutControlItem3.Name = "layoutControlItem3";
-      this.layoutControlItem3.Size = new System.Drawing.Size(442, 24);
+      this.layoutControlItem3.Size = new System.Drawing.Size(440, 24);
       this.layoutControlItem3.Text = "Container id";
       this.layoutControlItem3.TextSize = new System.Drawing.Size(81, 13);
       // 
@@ -897,7 +902,7 @@
       this.layoutControlItem7.Control = this.gridVolumes;
       this.layoutControlItem7.Location = new System.Drawing.Point(0, 72);
       this.layoutControlItem7.Name = "layoutControlItem7";
-      this.layoutControlItem7.Size = new System.Drawing.Size(442, 284);
+      this.layoutControlItem7.Size = new System.Drawing.Size(440, 270);
       this.layoutControlItem7.Text = "Volumes";
       this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem7.TextSize = new System.Drawing.Size(81, 13);
@@ -905,9 +910,9 @@
       // layoutControlItem14
       // 
       this.layoutControlItem14.Control = this.gridLabels;
-      this.layoutControlItem14.Location = new System.Drawing.Point(442, 356);
+      this.layoutControlItem14.Location = new System.Drawing.Point(440, 342);
       this.layoutControlItem14.Name = "layoutControlItem14";
-      this.layoutControlItem14.Size = new System.Drawing.Size(400, 285);
+      this.layoutControlItem14.Size = new System.Drawing.Size(398, 270);
       this.layoutControlItem14.Text = "Labels";
       this.layoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem14.TextSize = new System.Drawing.Size(81, 13);
@@ -915,27 +920,27 @@
       // layoutControlItem2
       // 
       this.layoutControlItem2.Control = this.textImageName;
-      this.layoutControlItem2.Location = new System.Drawing.Point(221, 48);
+      this.layoutControlItem2.Location = new System.Drawing.Point(220, 48);
       this.layoutControlItem2.Name = "layoutControlItem2";
-      this.layoutControlItem2.Size = new System.Drawing.Size(221, 24);
+      this.layoutControlItem2.Size = new System.Drawing.Size(220, 24);
       this.layoutControlItem2.Text = "Image name";
       this.layoutControlItem2.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem5
       // 
       this.layoutControlItem5.Control = this.textCreatedDate;
-      this.layoutControlItem5.Location = new System.Drawing.Point(442, 24);
+      this.layoutControlItem5.Location = new System.Drawing.Point(440, 24);
       this.layoutControlItem5.Name = "layoutControlItem5";
-      this.layoutControlItem5.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem5.Size = new System.Drawing.Size(199, 24);
       this.layoutControlItem5.Text = "Created date";
       this.layoutControlItem5.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem6
       // 
       this.layoutControlItem6.Control = this.textCommand;
-      this.layoutControlItem6.Location = new System.Drawing.Point(642, 24);
+      this.layoutControlItem6.Location = new System.Drawing.Point(639, 24);
       this.layoutControlItem6.Name = "layoutControlItem6";
-      this.layoutControlItem6.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem6.Size = new System.Drawing.Size(199, 24);
       this.layoutControlItem6.Text = "Command";
       this.layoutControlItem6.TextSize = new System.Drawing.Size(81, 13);
       // 
@@ -944,52 +949,52 @@
       this.layoutControlItem4.Control = this.textImageId;
       this.layoutControlItem4.Location = new System.Drawing.Point(0, 24);
       this.layoutControlItem4.Name = "layoutControlItem4";
-      this.layoutControlItem4.Size = new System.Drawing.Size(442, 24);
+      this.layoutControlItem4.Size = new System.Drawing.Size(440, 24);
       this.layoutControlItem4.Text = "Image id";
       this.layoutControlItem4.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem9
       // 
       this.layoutControlItem9.Control = this.textState;
-      this.layoutControlItem9.Location = new System.Drawing.Point(442, 0);
+      this.layoutControlItem9.Location = new System.Drawing.Point(440, 0);
       this.layoutControlItem9.Name = "layoutControlItem9";
-      this.layoutControlItem9.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem9.Size = new System.Drawing.Size(199, 24);
       this.layoutControlItem9.Text = "State";
       this.layoutControlItem9.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem10
       // 
       this.layoutControlItem10.Control = this.textStatus;
-      this.layoutControlItem10.Location = new System.Drawing.Point(642, 0);
+      this.layoutControlItem10.Location = new System.Drawing.Point(639, 0);
       this.layoutControlItem10.Name = "layoutControlItem10";
-      this.layoutControlItem10.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem10.Size = new System.Drawing.Size(199, 24);
       this.layoutControlItem10.Text = "Status";
       this.layoutControlItem10.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem11
       // 
       this.layoutControlItem11.Control = this.textSizeRootFS;
-      this.layoutControlItem11.Location = new System.Drawing.Point(642, 48);
+      this.layoutControlItem11.Location = new System.Drawing.Point(639, 48);
       this.layoutControlItem11.Name = "layoutControlItem11";
-      this.layoutControlItem11.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem11.Size = new System.Drawing.Size(199, 24);
       this.layoutControlItem11.Text = "SizeRootFS";
       this.layoutControlItem11.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem12
       // 
       this.layoutControlItem12.Control = this.textSizeRW;
-      this.layoutControlItem12.Location = new System.Drawing.Point(442, 48);
+      this.layoutControlItem12.Location = new System.Drawing.Point(440, 48);
       this.layoutControlItem12.Name = "layoutControlItem12";
-      this.layoutControlItem12.Size = new System.Drawing.Size(200, 24);
+      this.layoutControlItem12.Size = new System.Drawing.Size(199, 24);
       this.layoutControlItem12.Text = "SizeRW";
       this.layoutControlItem12.TextSize = new System.Drawing.Size(81, 13);
       // 
       // layoutControlItem8
       // 
       this.layoutControlItem8.Control = this.gridPorts;
-      this.layoutControlItem8.Location = new System.Drawing.Point(442, 72);
+      this.layoutControlItem8.Location = new System.Drawing.Point(440, 72);
       this.layoutControlItem8.Name = "layoutControlItem8";
-      this.layoutControlItem8.Size = new System.Drawing.Size(400, 284);
+      this.layoutControlItem8.Size = new System.Drawing.Size(398, 270);
       this.layoutControlItem8.Text = "Ports";
       this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem8.TextSize = new System.Drawing.Size(81, 13);
@@ -997,9 +1002,9 @@
       // layoutControlItem13
       // 
       this.layoutControlItem13.Control = this.gridNetworkSettings;
-      this.layoutControlItem13.Location = new System.Drawing.Point(0, 356);
+      this.layoutControlItem13.Location = new System.Drawing.Point(0, 342);
       this.layoutControlItem13.Name = "layoutControlItem13";
-      this.layoutControlItem13.Size = new System.Drawing.Size(442, 285);
+      this.layoutControlItem13.Size = new System.Drawing.Size(440, 270);
       this.layoutControlItem13.Text = "Network settings";
       this.layoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top;
       this.layoutControlItem13.TextSize = new System.Drawing.Size(81, 13);
@@ -1009,7 +1014,7 @@
       this.layoutControlItem1.Control = this.textContainerName;
       this.layoutControlItem1.Location = new System.Drawing.Point(0, 48);
       this.layoutControlItem1.Name = "layoutControlItem1";
-      this.layoutControlItem1.Size = new System.Drawing.Size(221, 24);
+      this.layoutControlItem1.Size = new System.Drawing.Size(220, 24);
       this.layoutControlItem1.Text = "Container name";
       this.layoutControlItem1.TextSize = new System.Drawing.Size(81, 13);
       // 
@@ -1036,13 +1041,15 @@
             this.barButtonItemOpenUrlMenu,
             this.barButtonItemOpenUrlHttp,
             this.barButtonItemOpenUrlHttps,
-            this.barButtonItemOpenMappedFolder});
+            this.barButtonItemOpenMappedFolder,
+            this.barStaticItemDockerConnectionMissing});
       this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-      this.ribbonControl.MaxItemId = 16;
+      this.ribbonControl.MaxItemId = 17;
       this.ribbonControl.Name = "ribbonControl";
       this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageContainers});
       this.ribbonControl.Size = new System.Drawing.Size(1200, 139);
+      this.ribbonControl.StatusBar = this.ribbonStatusBar;
       // 
       // barButtonItemStopContainer
       // 
@@ -1177,6 +1184,14 @@
       this.barButtonItemOpenMappedFolder.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemOpenMappedFolder.ImageOptions.SvgImage")));
       this.barButtonItemOpenMappedFolder.Name = "barButtonItemOpenMappedFolder";
       // 
+      // barStaticItemDockerConnectionMissing
+      // 
+      this.barStaticItemDockerConnectionMissing.Caption = "Could not connect to docker!";
+      this.barStaticItemDockerConnectionMissing.Id = 16;
+      this.barStaticItemDockerConnectionMissing.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barStaticItemDockerConnectionMissing.ImageOptions.SvgImage")));
+      this.barStaticItemDockerConnectionMissing.Name = "barStaticItemDockerConnectionMissing";
+      this.barStaticItemDockerConnectionMissing.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+      // 
       // ribbonPageContainers
       // 
       this.ribbonPageContainers.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1205,11 +1220,29 @@
       this.ribbonPageGroupManageContainer.ShowCaptionButton = false;
       this.ribbonPageGroupManageContainer.Text = "Manage container";
       // 
+      // ribbonStatusBar
+      // 
+      this.ribbonStatusBar.ItemLinks.Add(this.barStaticItemDockerConnectionMissing);
+      this.ribbonStatusBar.Location = new System.Drawing.Point(0, 775);
+      this.ribbonStatusBar.Name = "ribbonStatusBar";
+      this.ribbonStatusBar.Ribbon = this.ribbonControl;
+      this.ribbonStatusBar.Size = new System.Drawing.Size(1200, 25);
+      // 
+      // panelControl
+      // 
+      this.panelControl.Controls.Add(this.splitContainerControl);
+      this.panelControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panelControl.Location = new System.Drawing.Point(0, 139);
+      this.panelControl.Name = "panelControl";
+      this.panelControl.Size = new System.Drawing.Size(1200, 636);
+      this.panelControl.TabIndex = 6;
+      // 
       // ContainerListControl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.splitContainerControl);
+      this.Controls.Add(this.panelControl);
+      this.Controls.Add(this.ribbonStatusBar);
       this.Controls.Add(this.ribbonControl);
       this.Name = "ContainerListControl";
       this.Size = new System.Drawing.Size(1200, 800);
@@ -1259,6 +1292,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteContainer)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuDeleteAllContainers)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.popupMenuOpenUrl)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.panelControl)).EndInit();
+      this.panelControl.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -1366,5 +1401,8 @@
     private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colContainerIdString;
     private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
+    private DevExpress.XtraBars.BarStaticItem barStaticItemDockerConnectionMissing;
+    private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+    private DevExpress.XtraEditors.PanelControl panelControl;
   }
 }
