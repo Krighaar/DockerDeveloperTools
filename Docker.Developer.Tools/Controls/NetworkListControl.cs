@@ -13,6 +13,8 @@ namespace Docker.Developer.Tools.Controls
   public partial class NetworkListControl : XtraUserControl, IControlSupportsRibbonMerge
   {
     private DockerClient _dockerClient;
+    // Prevents running UpdateDetails when the container list data source is changed.
+    private bool _updatingDataSource = false;
 
     public NetworkListControl()
     {
@@ -28,9 +30,10 @@ namespace Docker.Developer.Tools.Controls
         throw new InvalidOperationException($"Cannot load control when {nameof(_dockerClient)} has not been initialized!");
     }
 
-    public void Initialize(DockerClient dockerClient)
+    public async void Initialize(DockerClient dockerClient)
     {
       _dockerClient = dockerClient ?? throw new ArgumentNullException(nameof(dockerClient));
+      await RefreshData();
       timer.Start();
     }
 
@@ -42,7 +45,8 @@ namespace Docker.Developer.Tools.Controls
 
     public void MergeStatusBar(RibbonStatusBar parent)
     {
-      // No status bar to merge.
+      if (parent == null) throw new ArgumentNullException(nameof(parent));
+      parent.MergeStatusBar(ribbonStatusBar);
     }
 
     private async void timer_Tick(object sender, EventArgs e)
@@ -89,9 +93,27 @@ namespace Docker.Developer.Tools.Controls
     {
       using (var token = gridControlState.StoreViewState(gridViewNetworkList))
       {
-        var listContainerParameters = new NetworksListParameters();
-        var result = await _dockerClient.Networks.ListNetworksAsync(listContainerParameters);
-        gridNetworkList.DataSource = result.ToList();
+        try
+        {
+          var listContainerParameters = new NetworksListParameters();
+          var result = await _dockerClient.Networks.ListNetworksAsync(listContainerParameters);
+          _updatingDataSource = true;
+          // Triggers FocusedRowChanged
+          gridNetworkList.DataSource = result.ToList();
+          barStaticItemDockerConnectionMissing.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+        catch (Exception ex)
+        {
+          // The async call first throws a DockerApiException and a short while after a TimeoutException is throw as well.
+          if (ex is DockerApiException || ex is TimeoutException)
+            barStaticItemDockerConnectionMissing.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+          else
+            throw;
+        }
+        finally
+        {
+          _updatingDataSource = false;
+        }
       }
     }
 
@@ -113,6 +135,8 @@ namespace Docker.Developer.Tools.Controls
 
     private void UpdateDetails()
     {
+      if (_updatingDataSource) return;
+
       var row = gridViewNetworkList.GetFocusedRow() as NetworkResponse;
       textId.Text = row != null ? row.ID : string.Empty;
       textName.Text = row != null ? row.Name : string.Empty;

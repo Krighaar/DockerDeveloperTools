@@ -2,7 +2,7 @@
 
 This tool is primarily intended to be used when developing Docker images using Docker for Windows.
 It tries to combine as many different work processes as possible into one tool.
-Some of the things that would normally require one or more commands in Powershell/Command prompt ca be done with a single click in the application.
+Some of the things that would normally require one or more commands in Powershell/Command prompt can be done with a single click in the application.
 
 [Latest release](https://github.com/Krm1t/DockerDeveloperTools/releases/latest)
 
