@@ -14,6 +14,8 @@ namespace Docker.Developer.Tools.Controls
   public partial class ContainerListControl : XtraUserControl, IControlSupportsRibbonMerge
   {
     private DockerClient _dockerClient;
+    // Prevents running UpdateDetails when the container list data source is changed.
+    private bool _updatingDataSource = false;
 
     public ContainerListControl()
     {
@@ -29,9 +31,10 @@ namespace Docker.Developer.Tools.Controls
         throw new InvalidOperationException($"Cannot load control when {nameof(_dockerClient)} has not been initialized!");
     }
 
-    public void Initialize(DockerClient dockerClient)
+    public async void Initialize(DockerClient dockerClient)
     {
       _dockerClient = dockerClient ?? throw new ArgumentNullException(nameof(dockerClient));
+      await RefreshData();
       timer.Start();
     }
 
@@ -92,7 +95,16 @@ namespace Docker.Developer.Tools.Controls
       {
         var listContainerParameters = new ContainersListParameters() { All = true };
         var result = await _dockerClient.Containers.ListContainersAsync(listContainerParameters);
-        gridContainerList.DataSource = result.ToList();
+        _updatingDataSource = true;
+        try
+        {
+          // Triggers FocusedRowChanged
+          gridContainerList.DataSource = result.ToList();
+        }
+        finally
+        {
+          _updatingDataSource = false;
+        }
       }
     }
 
@@ -128,6 +140,8 @@ namespace Docker.Developer.Tools.Controls
 
     private void UpdateDetails()
     {
+      if (_updatingDataSource) return;
+
       var row = gridViewContainerList.GetFocusedRow() as ContainerListResponse;
       textContainerId.Text = row != null ? row.ID : string.Empty;
       var containerName = row != null ? row.Names.FirstOrDefault() : string.Empty;
