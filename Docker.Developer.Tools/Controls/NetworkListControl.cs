@@ -115,6 +115,9 @@ namespace Docker.Developer.Tools.Controls
           _updatingDataSource = false;
         }
       }
+
+      // Force update details.
+      UpdateDetails();
     }
 
     private void gridViewNetworkList_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)

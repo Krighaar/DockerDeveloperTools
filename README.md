@@ -22,12 +22,11 @@ The following are a list of things I'm planning to add.
 1. Show logs directly in the app instead of opening the Command Prompt.
 2. Attach to container should be a multi document dockable tab in the app much like opening code files in Visual Studio.
 The idea is that you can attach to multiple containers a once and dock the windows side by side to more easily monitor activity when requests chain through multiple containers.
-3. Start container
-4. Delete all images should retry over and over until all images are gone or until images no longer gets removed.
+3. Delete all images should retry over and over until all images are gone or until images no longer gets removed.
 This is mostly because images are dependent upon each other so one iteration doesn't remove all images.
-5. Start/stop/restart the Docker Desktop app. Useful for the times when Docker seems to not work properly and all you need to do to fix it is restart Docker.
-6. Start/stop/restart the Docker service. Also useful for when Docker misbehave.
-7. "Upgrade" to Visual Studio 2019 and DevExpress 19.1 once released.
+4. Start/stop/restart the Docker Desktop app. Useful for the times when Docker seems to not work properly and all you need to do to fix it is restart Docker.
+5. Start/stop/restart the Docker service. Also useful for when Docker misbehave.
+6. "Upgrade" to Visual Studio 2019 and DevExpress 19.1 once released.
 
 ### Development
 For anyone wanting to take a look at and build the application you will need a license for [DevExpress WinForms](https://www.devexpress.com/products/net/controls/winforms/)

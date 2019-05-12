@@ -116,6 +116,9 @@ namespace Docker.Developer.Tools.Controls
           _updatingDataSource = false;
         }
       }
+
+      // Force update details.
+      UpdateDetails();
     }
 
     private void gridViewContainerList_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -183,12 +186,16 @@ namespace Docker.Developer.Tools.Controls
     private void UpdateButtons()
     {
       var row = gridViewContainerList.GetFocusedRow() as ContainerListResponse;
-      barButtonItemStopContainer.Enabled = row != null;
-      barButtonItemDeleteContainerMenu.Enabled = row != null;
-      barButtonItemAttachToContainer.Enabled = row != null && row.State == ContainerStatus.running.ToString();
-      barButtonItemShowLogs.Enabled = row != null;
+      var state = row != null ? (ContainerStatus)Enum.Parse(typeof(ContainerStatus), row.State, true) : ContainerStatus.unknown;
+
+      barButtonItemStartContaienr.Enabled = row != null && state == ContainerStatus.exited;
+      barButtonItemStopContainer.Enabled = row != null && state == ContainerStatus.running;
+      barButtonItemDeleteContainerMenu.Enabled = row != null && (state == ContainerStatus.exited || state == ContainerStatus.dead);
+      barButtonItemDeleteAllContainers.Enabled = row != null && (state == ContainerStatus.exited || state == ContainerStatus.dead);
+      barButtonItemAttachToContainer.Enabled = row != null && state == ContainerStatus.running;
+      barButtonItemShowLogs.Enabled = row != null && state == ContainerStatus.running;
       //barButtonItemOpenMappedFolder.Enabled = row != null && row.Mounts.Any();
-      barButtonItemOpenUrlMenu.Enabled = row != null && row.Ports.Any();
+      barButtonItemOpenUrlMenu.Enabled = row != null && row.Ports.Any() && state == ContainerStatus.running;
     }
 
     private void gridViewContainerList_KeyDown(object sender, KeyEventArgs e)
@@ -260,6 +267,21 @@ namespace Docker.Developer.Tools.Controls
     #endregion
 
     #region < Ribbon >
+
+    private async void barButtonItemStartContaienr_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+      if (gridViewContainerList.GetFocusedRow() is ContainerListResponse container)
+      {
+        try
+        {
+          await _dockerClient.Containers.StartContainerAsync(container.ID, new ContainerStartParameters());
+        }
+        catch
+        {
+          XtraMessageBox.Show("Could not start the container!");
+        }
+      }
+    }
 
     private async void barButtonItemStopContainer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {

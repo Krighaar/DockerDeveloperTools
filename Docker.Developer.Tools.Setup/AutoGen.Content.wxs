@@ -27,6 +27,9 @@
                 <Component Id="cmp0804D996127ABF5991CE6CFEE5484613" Guid="*">
                     <File Id="fil13992E9CD473C1405EC131E7519ABA35" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ContainerRunning.svg" />
                 </Component>
+                <Component Id="cmp26802AA38737C575B24695AAEAE4A401" Guid="*">
+                    <File Id="filBF0B49B6D9EB28FCF74DAA75813A4826" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\DeleteNetwork.svg" />
+                </Component>
                 <Component Id="cmpFD969CCEC364EC8F977C2EB043641FD1" Guid="*">
                     <File Id="filA634112EDB7A111DDD8098381963D7D3" Source="$(var.Docker.Developer.Tools.ProjectDir)\Resources\ImageRemove.svg" />
                 </Component>
@@ -43,6 +46,7 @@
             <ComponentRef Id="cmpB42E275C98FB17E5E99E8F56B335515F" />
             <ComponentRef Id="cmp28BE7E274E44EEF7EBD6F3B02BD07D23" />
             <ComponentRef Id="cmp0804D996127ABF5991CE6CFEE5484613" />
+            <ComponentRef Id="cmp26802AA38737C575B24695AAEAE4A401" />
             <ComponentRef Id="cmpFD969CCEC364EC8F977C2EB043641FD1" />
         </ComponentGroup>
     </Fragment>

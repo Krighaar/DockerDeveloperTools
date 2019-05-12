@@ -27,7 +27,7 @@
       this.colImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
       this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
       this.colState = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-      this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+      this.repositoryItemImageComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
       this.svgImageCollection = new DevExpress.Utils.SvgImageCollection(this.components);
       this.repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
       this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
@@ -115,6 +115,7 @@
       this.barButtonItemOpenUrlHttps = new DevExpress.XtraBars.BarButtonItem();
       this.barButtonItemOpenMappedFolder = new DevExpress.XtraBars.BarButtonItem();
       this.barStaticItemDockerConnectionMissing = new DevExpress.XtraBars.BarStaticItem();
+      this.barButtonItemStartContaienr = new DevExpress.XtraBars.BarButtonItem();
       this.ribbonPageContainers = new DevExpress.XtraBars.Ribbon.RibbonPage();
       this.ribbonPageGroupContainers = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
       this.ribbonPageGroupManageContainer = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -123,7 +124,7 @@
       this.panelControl = new DevExpress.XtraEditors.PanelControl();
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
@@ -179,7 +180,7 @@
       this.gridContainerList.MainView = this.gridViewContainerList;
       this.gridContainerList.Name = "gridContainerList";
       this.gridContainerList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemImageComboBox1,
+            this.repositoryItemImageComboBox,
             this.repositoryItemImageEdit1});
       this.gridContainerList.Size = new System.Drawing.Size(332, 632);
       this.gridContainerList.TabIndex = 0;
@@ -281,7 +282,7 @@
       // 
       this.colState.AutoFillDown = true;
       this.colState.Caption = "State";
-      this.colState.ColumnEdit = this.repositoryItemImageComboBox1;
+      this.colState.ColumnEdit = this.repositoryItemImageComboBox;
       this.colState.FieldName = "colState";
       this.colState.MinWidth = 60;
       this.colState.Name = "colState";
@@ -290,13 +291,13 @@
       this.colState.Visible = true;
       this.colState.Width = 60;
       // 
-      // repositoryItemImageComboBox1
+      // repositoryItemImageComboBox
       // 
-      this.repositoryItemImageComboBox1.AutoHeight = false;
-      this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+      this.repositoryItemImageComboBox.AutoHeight = false;
+      this.repositoryItemImageComboBox.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-      this.repositoryItemImageComboBox1.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
-      this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+      this.repositoryItemImageComboBox.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
+      this.repositoryItemImageComboBox.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Unknown", 0, 0),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Created", 1, 1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Restarting", 2, 2),
@@ -305,9 +306,9 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Paused", 5, 5),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Exited", 6, 6),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Dead", 7, 7)});
-      this.repositoryItemImageComboBox1.LargeImages = this.svgImageCollection;
-      this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
-      this.repositoryItemImageComboBox1.SmallImages = this.svgImageCollection;
+      this.repositoryItemImageComboBox.LargeImages = this.svgImageCollection;
+      this.repositoryItemImageComboBox.Name = "repositoryItemImageComboBox";
+      this.repositoryItemImageComboBox.SmallImages = this.svgImageCollection;
       // 
       // svgImageCollection
       // 
@@ -1042,9 +1043,10 @@
             this.barButtonItemOpenUrlHttp,
             this.barButtonItemOpenUrlHttps,
             this.barButtonItemOpenMappedFolder,
-            this.barStaticItemDockerConnectionMissing});
+            this.barStaticItemDockerConnectionMissing,
+            this.barButtonItemStartContaienr});
       this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-      this.ribbonControl.MaxItemId = 17;
+      this.ribbonControl.MaxItemId = 18;
       this.ribbonControl.Name = "ribbonControl";
       this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageContainers});
@@ -1192,6 +1194,14 @@
       this.barStaticItemDockerConnectionMissing.Name = "barStaticItemDockerConnectionMissing";
       this.barStaticItemDockerConnectionMissing.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
       // 
+      // barButtonItemStartContaienr
+      // 
+      this.barButtonItemStartContaienr.Caption = "Start container";
+      this.barButtonItemStartContaienr.Id = 17;
+      this.barButtonItemStartContaienr.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemStartContaienr.ImageOptions.SvgImage")));
+      this.barButtonItemStartContaienr.Name = "barButtonItemStartContaienr";
+      this.barButtonItemStartContaienr.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemStartContaienr_ItemClick);
+      // 
       // ribbonPageContainers
       // 
       this.ribbonPageContainers.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1202,6 +1212,7 @@
       // 
       // ribbonPageGroupContainers
       // 
+      this.ribbonPageGroupContainers.ItemLinks.Add(this.barButtonItemStartContaienr);
       this.ribbonPageGroupContainers.ItemLinks.Add(this.barButtonItemStopContainer);
       this.ribbonPageGroupContainers.ItemLinks.Add(this.barButtonItemStopAllContainers);
       this.ribbonPageGroupContainers.ItemLinks.Add(this.barButtonItemDeleteContainerMenu);
@@ -1248,7 +1259,7 @@
       this.Size = new System.Drawing.Size(1200, 800);
       ((System.ComponentModel.ISupportInitialize)(this.gridContainerList)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewContainerList)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
@@ -1311,7 +1322,7 @@
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colImage;
     private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn colState;
     private DevExpress.Utils.SvgImageCollection svgImageCollection;
-    private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
+    private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox;
     private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
     private System.Windows.Forms.Timer timer;
     private DevExpress.XtraGrid.GridControl gridPorts;
@@ -1404,5 +1415,6 @@
     private DevExpress.XtraBars.BarStaticItem barStaticItemDockerConnectionMissing;
     private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
     private DevExpress.XtraEditors.PanelControl panelControl;
+    private DevExpress.XtraBars.BarButtonItem barButtonItemStartContaienr;
   }
 }
